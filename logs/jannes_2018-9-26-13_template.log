@@ -1,0 +1,32 @@
+2018/09/26 13:16:10.353 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:16:11.341 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:16:11.341 [D] [main.go:78]  <nil> 
+2018/09/26 13:16:11.386 [I] [base.go:112]  [*] gRPC Server Ready :58080 
+2018/09/26 13:19:33.235 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:19:34.230 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:19:34.230 [D] [main.go:78]  <nil> 
+2018/09/26 13:19:34.232 [I] [base.go:112]  [*] gRPC Server Ready :58080 
+2018/09/26 13:21:20.516 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:21:21.512 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:21:21.512 [D] [main.go:78]  <nil> 
+2018/09/26 13:21:21.513 [I] [base.go:112]  [*] gRPC Server Ready :58080 
+2018/09/26 13:21:40.736 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:21:41.733 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:21:41.733 [D] [main.go:78]  <nil> 
+2018/09/26 13:21:41.736 [I] [base.go:112]  [*] gRPC Server Ready :58080 
+2018/09/26 13:21:46.453 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:21:47.450 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:21:47.450 [D] [main.go:78]  <nil> 
+2018/09/26 13:21:47.452 [I] [base.go:112]  [*] gRPC Server Ready :58080 
+2018/09/26 13:24:40.135 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:24:41.131 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:24:41.131 [D] [main.go:78]  <nil> 
+2018/09/26 13:24:41.133 [I] [base.go:122]  [*] gRPC Server Ready :58080 
+2018/09/26 13:46:19.317 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:46:20.314 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:46:20.314 [D] [main.go:78]  <nil> 
+2018/09/26 13:46:20.315 [I] [base.go:124]  [*] gRPC Server Ready :58080 
+2018/09/26 13:47:44.649 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 13:47:45.646 [D] [main.go:72]  checking dir storage 
+2018/09/26 13:47:45.646 [D] [main.go:78]  <nil> 
+2018/09/26 13:47:45.647 [I] [base.go:123]  [*] gRPC Server Ready :58080 

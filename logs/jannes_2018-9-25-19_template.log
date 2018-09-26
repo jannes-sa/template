@@ -1,0 +1,4 @@
+2018/09/25 19:01:42.718 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/25 19:01:43.715 [D] [main.go:72]  checking dir storage 
+2018/09/25 19:01:43.715 [D] [main.go:78]  <nil> 
+2018/09/25 19:01:43.717 [I] [base.go:112]  [*] gRPC Server Ready :58080 

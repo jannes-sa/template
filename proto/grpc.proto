@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.service";
+option java_outer_classname = "GrpcProto";
+
+package reverse;
+
+service Restful {
+	rpc Echo (DoReq) returns (DoResp){}
+}
+
+message DoReq {
+	bytes header = 1;
+	bytes body = 2;
+	string route = 3;
+	string round = 4;
+	string reqID = 5;
+}
+
+message DoResp {
+	bytes header = 1;
+	bytes body = 2;
+	string route = 3;
+	string round = 4;
+	string reqID = 5;
+}

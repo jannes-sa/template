@@ -1,0 +1,15 @@
+2018/09/26 14:35:34.960 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 14:36:01.396 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 14:36:02.393 [D] [main.go:72]  checking dir storage 
+2018/09/26 14:36:02.393 [D] [main.go:78]  <nil> 
+2018/09/26 14:36:02.393 [I] [base.go:121]  [*] gRPC Server Ready :58080 
+2018/09/26 14:36:22.414 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 14:36:23.411 [D] [main.go:72]  checking dir storage 
+2018/09/26 14:37:38.107 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 14:37:39.104 [D] [main.go:72]  checking dir storage 
+2018/09/26 14:37:39.104 [D] [main.go:78]  <nil> 
+2018/09/26 14:37:39.106 [I] [base.go:127]  [*] gRPC Server Ready :58080 
+2018/09/26 14:40:39.602 [I] [asm_amd64.s:2337]  http server Running on http://:8080
+2018/09/26 14:40:40.599 [D] [main.go:72]  checking dir storage 
+2018/09/26 14:40:40.599 [D] [main.go:78]  <nil> 
+2018/09/26 14:40:40.599 [I] [base.go:140]  [*] gRPC Server Ready :58080 
