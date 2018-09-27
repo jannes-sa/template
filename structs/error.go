@@ -301,7 +301,7 @@ var ErrorCode struct {
 	FailedAccountBranchRecon Code `code:"E02030068" case:"Interdomain Error" msg:"Failed to generate {report_name} for Date {date}. It contains invalid data, please check {filename}"`
 
 	//Loyalty Report
-	OriginalReverseJobIdNotFound Code `code:"E02030072" case:"Original Reverse JobId NotFound" msg:"Original Reverse JobId Not Found"`
+	OriginalReverseJobIDNotFound Code `code:"E02030072" case:"Original Reverse JobId NotFound" msg:"Original Reverse JobId Not Found"`
 
 	AccountClosed Code `code:"E02030077" case:"Account Already Closed" msg:"This account number was closed"`
 

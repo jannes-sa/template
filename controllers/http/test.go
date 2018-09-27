@@ -26,10 +26,7 @@ func (c *TestController) URLMapping() {
 func (c *TestController) Get() {
 	errCode := make([]structs.TypeError, 0)
 	id := c.Ctx.Input.Param(":id")
-
-	var t interface{}
-	json.Unmarshal([]byte(`{"id":`+id+`}`), &t)
-	c.Data["json"] = t
+	beego.Debug(id)
 
 	SendOutput(c.Ctx, c.Data["json"], errCode)
 }

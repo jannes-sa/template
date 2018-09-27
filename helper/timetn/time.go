@@ -14,6 +14,7 @@ func Now() time.Time {
 	return time.Now().AddDate(0, 0, addedTimeNow)
 }
 
+// NowLoc - Time Now With Spesific Location Timezone
 func NowLoc(timeLoc string) (
 	dateTime time.Time,
 	err error,
@@ -27,7 +28,7 @@ func NowLoc(timeLoc string) (
 	return
 }
 
-// ParseTimeLocToString ...
+// ParseTimeLocToString - ParseTimeLocToString
 func ParseTimeLocToString(
 	layout string,
 	valueTime string,
@@ -47,7 +48,7 @@ func ParseTimeLocToString(
 	return
 }
 
-// ParseTimeLoc ...
+// ParseTimeLoc - ParseTimeLoc
 func ParseTimeLoc(
 	layout string,
 	valueTime string,
@@ -73,7 +74,7 @@ func ParseTimeLoc(
 	return
 }
 
-// SetTimeDateWithSpesificDate ...
+// SetTimeDateWithSpesificDate - SetTimeDateWithSpesificDate
 func SetTimeDateWithSpesificDate(y int, m time.Month, d int) {
 	if y != 0 && m != 0 && d != 0 {
 		tm, err := time.LoadLocation("Asia/Bangkok")

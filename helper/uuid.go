@@ -4,9 +4,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-// GetUUID ...
+// GetUUID - Generate UUID V4
 func GetUUID() string {
-	UUID, errUUID := uuid.NewV4()
-	CheckErr("error uuid helper", errUUID)
-	return UUID.String()
+	return uuid.NewV4().String()
 }

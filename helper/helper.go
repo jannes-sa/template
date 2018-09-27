@@ -30,8 +30,6 @@ import (
 
 var secureDigits = 6
 
-var currency = "IDR"
-
 // JS JSON FAST
 var JS js.API
 
@@ -60,17 +58,6 @@ func HeaderAll(c *context.Context) string {
 		beego.Error(err)
 	}
 	return string(strJSON)
-}
-
-func filterErrorCode(arrErrType []structs.TypeError) []structs.FilterErrorCode {
-	var filter []structs.FilterErrorCode
-	for _, val := range arrErrType {
-		filter = append(filter, structs.FilterErrorCode{
-			Code:    val.Code,
-			Message: val.Message,
-		})
-	}
-	return filter
 }
 
 // RestCircuitBreaker ...

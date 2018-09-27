@@ -10,6 +10,8 @@ import (
 	"template/routers/grpc"
 	"time"
 
+	_ "github.com/lib/pq"
+
 	"net/http"
 	_ "net/http/pprof"
 

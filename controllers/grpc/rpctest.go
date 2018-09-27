@@ -7,15 +7,18 @@ import (
 	"github.com/astaxie/beego"
 )
 
+// RPCTest - Controller RPC for testing only Success
 func RPCTest(
 	in *pb.DoReq,
 	errRPCCode *structs.TypeGRPCError,
 	body *[]byte,
 ) {
 	beego.Info(in.GetBody())
+	beego.Info(errRPCCode)
 	*body = []byte(`{"tesResponse":"tesResponse"}`)
 }
 
+// RPCTestFailed - Controller RPC for testing only Failed
 func RPCTestFailed(
 	in *pb.DoReq,
 	errRPCCode *structs.TypeGRPCError,
@@ -26,5 +29,6 @@ func RPCTestFailed(
 	(*errRPCCode).Error = errCode
 
 	beego.Info(in.GetBody())
+	beego.Info(errRPCCode)
 	*body = []byte(`{"tesResponseFailed":"tesResponseFailed"}`)
 }

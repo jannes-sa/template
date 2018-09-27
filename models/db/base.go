@@ -6,7 +6,6 @@ import (
 	"template/helper/constant"
 
 	"github.com/astaxie/beego/orm"
-	_ "github.com/lib/pq"
 )
 
 // Session Set Session for DB

@@ -1,6 +1,9 @@
 package constant
 
 var (
-	ThaiCur   = "THB"
-	IndoCur   = "IDR"
+	// ThaiCur - Thailand Currency
+	ThaiCur = "THB"
+
+	// IndoCur - Indonesia Currency
+	IndoCur = "IDR"
 )
