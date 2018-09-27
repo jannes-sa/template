@@ -17,7 +17,7 @@ func StreamServerInterceptor() rpc.StreamServerInterceptor {
 
 		md, _ := metadata.FromIncomingContext(stream.Context())
 		err := handler(srv, stream)
-		md.Set("content-type", "application/rpc; charset=UTF-8")
+		md.Set("content-type", "application/grpc; charset=UTF-8")
 
 		rpc.SendHeader(stream.Context(), md)
 
@@ -36,7 +36,7 @@ func UnaryServerInterceptor() rpc.UnaryServerInterceptor {
 		md, _ := metadata.FromIncomingContext(ctx)
 		resp, err := handler(ctx, req)
 
-		md.Set("content-type", "application/rpc; charset=UTF-8")
+		md.Set("content-type", "application/grpc; charset=UTF-8")
 
 		rpc.SendHeader(ctx, md)
 		dur := time.Since(startTime)
