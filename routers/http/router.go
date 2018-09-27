@@ -31,7 +31,7 @@ func Router() {
 
 	beego.SetStaticPath("/storages", "storages")
 
-	beego.InsertFilter("/*", beego.FinishRouter, AfterFunc, false)
+	beego.InsertFilter("/*", beego.FinishRouter, AfterFunc, true)
 }
 
 // pageNotFound ..
