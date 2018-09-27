@@ -45,8 +45,8 @@ func RegisterPGSQL() {
 func RegisterModelPgSQL() {
 	// orm.ResetModelCache()
 
-	if constant.GOENV == constant.LOCAL || constant.DEBUG == "1" {
-		orm.Debug = true
-	}
+	// if constant.GOENV == constant.LOCAL || constant.DEBUG == "1" {
+	orm.Debug = true
+	// }
 
 }

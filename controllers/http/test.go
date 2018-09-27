@@ -17,7 +17,7 @@ type TestController struct {
 // URLMapping ...
 func (c *TestController) URLMapping() {
 	c.Mapping("get", c.Get)
-	// c.Mapping("TestPost", c.TestPost)
+	c.Mapping("TestPost", c.TestPost)
 }
 
 // Get ...
@@ -27,7 +27,9 @@ func (c *TestController) Get() {
 	errCode := make([]structs.TypeError, 0)
 	id := c.Ctx.Input.Param(":id")
 
-	c.Data["json"] = `{"data":"id":"` + id + `"}`
+	var t interface{}
+	json.Unmarshal([]byte(`{"id":`+id+`}`), &t)
+	c.Data["json"] = t
 
 	SendOutput(c.Ctx, c.Data["json"], errCode)
 }
