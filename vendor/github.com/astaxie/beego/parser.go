@@ -35,7 +35,7 @@ import (
 	"github.com/astaxie/beego/utils"
 )
 
-var globalRouterTemplate = `package routers
+var globalRouterTemplate = `package http
 
 import (
 	"github.com/astaxie/beego"
@@ -54,7 +54,7 @@ var (
 	genInfoList        map[string][]ControllerComments
 )
 
-const commentPrefix = "commentsRouter_"
+const commentPrefix = "http/commentsRouter_"
 
 func init() {
 	pkgLastupdate = make(map[string]int64)

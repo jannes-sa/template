@@ -2,20 +2,23 @@ package http
 
 import (
 	"net/http"
+	ctrl "template/controllers/http"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 )
 
-func init() {
-	DoRouter()
-}
-
-// DoRouter ...
-func DoRouter() {
+// Router - Routing
+func Router() {
 	ns := beego.NewNamespace("/template/v1",
 		beego.NSBefore(Middleware),
 		// Start: Add Your HTTP Router Here //
+		/* this router only for testing purpose */
+		beego.NSNamespace("/test",
+			beego.NSInclude(
+				&ctrl.TestController{},
+			),
+		),
 
 		// End : Add Your HTTP Router Here //
 		beego.NSAfter(AfterFunc),
@@ -24,7 +27,7 @@ func DoRouter() {
 	beego.AddNamespace(ns)
 
 	beego.ErrorHandler("404", pageNotFound)
-	// beego.InsertFilter("/*", beego.FinishRouter, AfterFunc, false)
+	beego.InsertFilter("/*", beego.FinishRouter, AfterFunc, false)
 
 	beego.SetStaticPath("/storages", "storages")
 }

@@ -1,7 +1,7 @@
 package http
 
 import (
-	"template/controllers"
+	ctrl "template/controllers/http"
 	"template/structs"
 
 	"github.com/astaxie/beego/context"
@@ -27,7 +27,7 @@ func filterURL(c *context.Context) {
 		valFunc(c, &errCode)
 		if len(errCode) > 0 {
 			var t interface{}
-			controllers.SendOutput(c, t, errCode)
+			ctrl.SendOutput(c, t, errCode)
 		}
 	}
 }
