@@ -28,7 +28,6 @@ var (
 
 	BANKCODE    string
 	BANKNAME    string
-	DOMAIN      string
 	DOMAINID    string
 	DOMAINIDFIX string
 
@@ -83,7 +82,6 @@ func init() {
 
 	BANKCODE = os.Getenv("BANK_CODE")
 	BANKNAME = os.Getenv("BANK_NAME")
-	DOMAIN = os.Getenv("DOMAIN")
 	DOMAINID = os.Getenv("DOMAIN_ID")
 	DOMAINIDFIX = os.Getenv("DOMAIN_ID_FIX")
 

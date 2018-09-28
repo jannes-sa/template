@@ -9,7 +9,7 @@ import (
 type (
 	// TestInterface - Test Interface Struct
 	TestInterface struct {
-		ID interface{} `json:"id" type:"int" validate:"type:E02030011"`
+		ID interface{} `json:"id" type:"int"`
 	}
 	// ReqTest - Test Struct
 	ReqTest struct {
