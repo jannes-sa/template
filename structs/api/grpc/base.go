@@ -3,6 +3,8 @@ package grpc
 import (
 	"template/structs"
 	"time"
+
+	"google.golang.org/grpc/metadata"
 )
 
 type (
@@ -24,7 +26,8 @@ type (
 
 	// TypeResponseRPC ...
 	TypeResponseRPC struct {
-		Header []byte
-		Body   []byte
+		Header   []byte
+		Body     []byte
+		Metadata metadata.MD
 	}
 )

@@ -22,7 +22,7 @@ func DBinit() {
 
 // HTTPInit ...
 func HTTPInit() {
-	routerHTTP.DoRouter()
+	routerHTTP.Router()
 	appath, _ := filepath.Abs(filepath.Dir("../../../http"))
 	beego.TestBeegoInit(appath)
 }

@@ -15,6 +15,7 @@ import (
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/metadata"
 
+	structsAPI "template/structs/api"
 	structsRPCAPI "template/structs/api/grpc"
 
 	"context"
@@ -83,6 +84,7 @@ func SendGRPC(
 	body []byte,
 	header []byte,
 	reqID string,
+	tracer structsAPI.HeaderTracer,
 ) (
 	structsRPCAPI.TypeResponseRPC,
 	error,
@@ -96,8 +98,14 @@ func SendGRPC(
 		return respRPC, err
 	}
 
-	respRPC, err = sendRPC(route,
-		serverAddr, body, header, reqID)
+	respRPC, err = sendRPC(
+		route,
+		serverAddr,
+		body,
+		header,
+		reqID,
+		tracer,
+	)
 
 	return respRPC, err
 }
@@ -109,6 +117,7 @@ func SendGRPCComponentTest(
 	body []byte,
 	header []byte,
 	reqID string,
+	tracer structsAPI.HeaderTracer,
 ) (
 	structsRPCAPI.TypeResponseRPC,
 	error,
@@ -117,8 +126,14 @@ func SendGRPCComponentTest(
 	var respRPC structsRPCAPI.TypeResponseRPC
 	var err error
 
-	respRPC, err = sendRPC(route,
-		serverAddr, body, header, reqID)
+	respRPC, err = sendRPC(
+		route,
+		serverAddr,
+		body,
+		header,
+		reqID,
+		tracer,
+	)
 
 	return respRPC, err
 }
@@ -129,6 +144,7 @@ func sendRPC(
 	body []byte,
 	header []byte,
 	reqID string,
+	tracer structsAPI.HeaderTracer,
 ) (
 	structsRPCAPI.TypeResponseRPC,
 	error,
@@ -155,7 +171,7 @@ func sendRPC(
 	ctx, cancel := context.WithTimeout(context.Background(), maxTimeout*time.Second)
 	defer cancel()
 
-	ctx = metadata.AppendToOutgoingContext(ctx, "x-request-id", "REQUESTID")
+	tracer.GRPCSetHeaderTrace(&ctx)
 
 	var md metadata.MD
 	r, err := c.Echo(
@@ -177,6 +193,7 @@ func sendRPC(
 
 	respRPC.Header = r.Header
 	respRPC.Body = r.Body
+	respRPC.Metadata = md
 
 	return respRPC, err
 }

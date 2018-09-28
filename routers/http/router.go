@@ -7,6 +7,10 @@ import (
 	"github.com/astaxie/beego"
 )
 
+func init() {
+	Router()
+}
+
 // Router - Routing
 func Router() {
 	beego.InsertFilter("/*", beego.BeforeRouter, BeforeFunc, true)

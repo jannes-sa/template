@@ -6,8 +6,8 @@ import (
 	"template/helper/constant"
 	"template/helper/timetn"
 	"template/models/db"
-	_ "template/routers"
 	"template/routers/grpc"
+	_ "template/routers/http"
 	"time"
 
 	_ "github.com/lib/pq"

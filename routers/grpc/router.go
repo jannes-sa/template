@@ -14,6 +14,10 @@ type fnRouteRPC func(
 
 var routeMap map[string]fnRouteRPC
 
+func init() {
+	Router()
+}
+
 func Router() {
 	routeMap = map[string]fnRouteRPC{
 		"/rpcTest":   ctrl.RPCTest,

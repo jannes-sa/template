@@ -5,6 +5,7 @@ import (
 	"template/helper"
 	"template/helper/timetn"
 	"template/structs"
+	structsAPI "template/structs/api"
 	structsRPC "template/structs/api/grpc"
 	"template/thirdparty/rpc"
 	"testing"
@@ -25,6 +26,12 @@ func TestComponentGRPCSuccess(t *testing.T) {
 	}
 	headerByte, _ := json.Marshal(header)
 
+	var tracer structsAPI.HeaderTracer
+	tracer.ParSpanID = "ParSpanID"
+	tracer.SpanID = "SpanID"
+	tracer.TraceID = "TraceID"
+	tracer.XReqID = "XReqID"
+
 	resp, err := rpc.SendGRPCComponentTest(
 		"/rpcTest",
 		"127.0.0.1:58080",
@@ -33,11 +40,13 @@ func TestComponentGRPCSuccess(t *testing.T) {
 		`),
 		headerByte,
 		reqID,
+		tracer,
 	)
 
 	beego.Debug(err)
 	beego.Debug(string(resp.Header))
 	beego.Debug(string(resp.Body))
+	beego.Debug(resp.Metadata)
 }
 
 func TestComponentGRPC404(t *testing.T) {
@@ -53,6 +62,12 @@ func TestComponentGRPC404(t *testing.T) {
 	}
 	headerByte, _ := json.Marshal(header)
 
+	var tracer structsAPI.HeaderTracer
+	tracer.ParSpanID = "ParSpanID"
+	tracer.SpanID = "SpanID"
+	tracer.TraceID = "TraceID"
+	tracer.XReqID = "XReqID"
+
 	resp, err := rpc.SendGRPCComponentTest(
 		"/404",
 		"127.0.0.1:58080",
@@ -61,6 +76,7 @@ func TestComponentGRPC404(t *testing.T) {
 		`),
 		headerByte,
 		reqID,
+		tracer,
 	)
 
 	beego.Debug(err)
@@ -81,6 +97,12 @@ func TestComponentGRPCFailed(t *testing.T) {
 	}
 	headerByte, _ := json.Marshal(header)
 
+	var tracer structsAPI.HeaderTracer
+	tracer.ParSpanID = "ParSpanID"
+	tracer.SpanID = "SpanID"
+	tracer.TraceID = "TraceID"
+	tracer.XReqID = "XReqID"
+
 	resp, err := rpc.SendGRPCComponentTest(
 		"/rpcFailed",
 		"127.0.0.1:58080",
@@ -89,6 +111,7 @@ func TestComponentGRPCFailed(t *testing.T) {
 		`),
 		headerByte,
 		reqID,
+		tracer,
 	)
 
 	beego.Debug(err)
