@@ -4,7 +4,7 @@ import (
 	"template/structs"
 	"time"
 
-	"google.golang.org/grpc/metadata"
+	structsAPI "template/structs/api"
 )
 
 type (
@@ -28,6 +28,6 @@ type (
 	TypeResponseRPC struct {
 		Header   []byte
 		Body     []byte
-		Metadata metadata.MD
+		Metadata structsAPI.HeaderTracer
 	}
 )

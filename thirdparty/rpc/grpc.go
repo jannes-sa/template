@@ -193,7 +193,10 @@ func sendRPC(
 
 	respRPC.Header = r.Header
 	respRPC.Body = r.Body
-	respRPC.Metadata = md
+
+	var respmeta structsAPI.HeaderTracer
+	respmeta.GRPCGetHeaderTrace(md)
+	respRPC.Metadata = respmeta
 
 	return respRPC, err
 }
