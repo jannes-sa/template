@@ -20,16 +20,6 @@ func SendOutput(
 		c.Output.SetStatus(400)
 	}
 
-	SendResponse(c, jsonBody, arrErrType)
-}
-
-// SendResponse Sending Response
-func SendResponse(
-	c *context.Context,
-	jsonBody interface{},
-	arrErrType []structs.TypeError,
-) {
-
 	// Set Header //
 	structHeaderResponse := helper.ConstructHTTPHeader(c)
 	// Set Header //

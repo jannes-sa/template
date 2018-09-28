@@ -3,12 +3,16 @@ package http
 import (
 	"strconv"
 	"strings"
+	ctrl "template/controllers/http"
 	"template/helper"
+	"template/helper/constant"
 	"template/helper/timetn"
+	"template/structs"
 	"time"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
+	jwt "github.com/dgrijalva/jwt-go"
 )
 
 // Middleware - Middleware Struct
@@ -65,12 +69,92 @@ func (m *Middleware) setMessageID(c *context.Context) {
 	c.Input.SetData("message-id", uuID)
 }
 
-// BeforeFunc - BeforeFunc
+func (m *Middleware) authToken(c *context.Context) {
+	if constant.AUTH == "" || constant.AUTH == "0" {
+		return
+	}
+
+	if c.Input.URL() == "/token" {
+		generateToken(c)
+		return
+	}
+
+	errCode := make([]structs.TypeError, 0)
+	tokenString := c.Input.Header("token")
+	_, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return []byte(`jwtkey`), nil
+	})
+
+	if ve, ok := err.(*jwt.ValidationError); ok {
+		if ve.Errors&jwt.ValidationErrorMalformed != 0 {
+			beego.Warning("That's not even a token", tokenString)
+			structs.ErrorCode.TokenGenerateDenied.String(&errCode)
+			ctrl.SendOutput(c, nil, errCode)
+			return
+		} else if ve.Errors&(jwt.ValidationErrorExpired|jwt.ValidationErrorNotValidYet) != 0 {
+			beego.Warning("Token Already Expired or Not Valid Yet", tokenString)
+			structs.ErrorCode.TokenExpired.String(&errCode)
+			ctrl.SendOutput(c, nil, errCode)
+			return
+		} else {
+			beego.Warning("Couldn't handle this token 1", err, tokenString)
+			structs.ErrorCode.TokenInvalid.String(&errCode)
+			ctrl.SendOutput(c, nil, errCode)
+			return
+		}
+	}
+}
+
+func generateToken(c *context.Context) {
+	errCode := make([]structs.TypeError, 0)
+
+	type tokenClaim struct {
+		Data string `json:"data"`
+		jwt.StandardClaims
+	}
+
+	timeExp, err := strconv.Atoi(constant.AUTHEXP)
+	helper.CheckErr("failed strconv AUTHEXP middleware http", err)
+	if err != nil {
+		structs.ErrorCode.TokenGenerateFailed.String(&errCode)
+		ctrl.SendOutput(c, nil, errCode)
+		return
+	}
+
+	// Create the Claims
+	claims := tokenClaim{
+		"customDataHere",
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(time.Duration(timeExp) * time.Minute).Unix(),
+			Issuer:    "jannes",
+		},
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	tokenString, err := token.SignedString([]byte(`jwtkey`))
+	if err != nil {
+		beego.Warning("failed generate token with signkey")
+		structs.ErrorCode.TokenGenerateFailed.String(&errCode)
+		ctrl.SendOutput(c, nil, errCode)
+		return
+	}
+
+	var respToken struct {
+		Token string `json:"token"`
+	}
+	respToken.Token = tokenString
+	ctrl.SendOutput(c, respToken, errCode)
+
+	return
+}
+
+// BeforeFunc - Execute before all router call
 func BeforeFunc(c *context.Context) {
 	var m Middleware
 
 	m.initialHeader(c)
 	m.log(c)
+	m.authToken(c)
 }
 
 // AfterFunc to execute progress after response

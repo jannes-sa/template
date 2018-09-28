@@ -180,21 +180,26 @@ var ErrorCode struct {
 
 	// Common Format Error //
 	UnexpectedError          Code `code:"0000" case:"Unexpected error" msg:"Unexpected error"`
-	RPCInvalid               Code `code:"9999" case:"Connection RPC Invalid" msg:"Connection RPC Invalid"`
-	ServiceNotAllowedToBatch Code `code:"9997" case:"Service Not Allowed to Batch" msg:"Service Not Allowed to Batch"`
-	URLFilterInvalid         Code `code:"9998" case:"URL Filter Invalid" msg:"URL Filter Invalid"`
+	RPCInvalid               Code `code:"0001" case:"Connection RPC Invalid" msg:"Connection RPC Invalid"`
+	ServiceNotAllowedToBatch Code `code:"0002" case:"Service Not Allowed to Batch" msg:"Service Not Allowed to Batch"`
+	URLFilterInvalid         Code `code:"0003" case:"URL Filter Invalid" msg:"URL Filter Invalid"`
 
-	RequestMalformed   Code `code:"0003" case:"Request malformed / Unacceptable" msg:"Request malformed / Unacceptable"`
-	DatabaseError      Code `code:"0100" case:"Database Error" msg:"Database Error"`
-	DatabaseConnError  Code `code:"0101" case:"Database Connection Error" msg:"Database Connection Error"`
-	FormatError        Code `code:"0401" case:"Format Error" msg:"Format Error"`
-	MismatchParamValue Code `code:"0402" case:"Mismatch Parameter Value" msg:"Mismatch Parameter Value"`
+	RequestMalformed   Code `code:"0004" case:"Request malformed / Unacceptable" msg:"Request malformed / Unacceptable"`
+	DatabaseError      Code `code:"0005" case:"Database Error" msg:"Database Error"`
+	DatabaseConnError  Code `code:"0006" case:"Database Connection Error" msg:"Database Connection Error"`
+	FormatError        Code `code:"0007" case:"Format Error" msg:"Format Error"`
+	MismatchParamValue Code `code:"0008" case:"Mismatch Parameter Value" msg:"Mismatch Parameter Value"`
 
-	MissingField Code `code:"0005" case:"Missing Field {field}" msg:"{field} is Required"`
+	MissingField Code `code:"0009" case:"Missing Field {field}" msg:"{field} is Required"`
 
-	ErorTypeString  Code `code:"0006" case:"Key type is string, but the value isn't" msg:"Field {field} must be string only"`
-	ErorTypeNumeric Code `code:"0007" case:"Key type is numeric, but the value isn't" msg:"Field {field} must be numeric only"`
-	ErorTypeTime    Code `code:"0008" case:"Key Datetime is (ISO 8601), but the value isn't" msg:"Field {field} must be ISO-8601 only"`
+	ErorTypeString  Code `code:"0010" case:"Key type is string, but the value isn't" msg:"Field {field} must be string only"`
+	ErorTypeNumeric Code `code:"0011" case:"Key type is numeric, but the value isn't" msg:"Field {field} must be numeric only"`
+	ErorTypeTime    Code `code:"0012" case:"Key Datetime is (ISO 8601), but the value isn't" msg:"Field {field} must be ISO-8601 only"`
+
+	TokenInvalid        Code `code:"0013" case:"Token Invalid" msg:"Token Invalid"`
+	TokenExpired        Code `code:"0014" case:"Token Expired" msg:"Token Expired"`
+	TokenGenerateFailed Code `code:"0015" case:"Generate Token Failed" msg:"Generate Token Failed"`
+	TokenGenerateDenied Code `code:"0016" case:"Permission Denied" msg:"Permission Denied"`
 	// Common Format Error //
 
 }

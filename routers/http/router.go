@@ -14,6 +14,7 @@ func init() {
 // Router - Routing
 func Router() {
 	beego.InsertFilter("/*", beego.BeforeRouter, BeforeFunc, true)
+
 	beego.ErrorHandler("404", pageNotFound)
 
 	ns := beego.NewNamespace("/template/v1",

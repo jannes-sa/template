@@ -9,48 +9,17 @@ import (
 )
 
 var (
-	GOPATH        string
-	GOAPP         string
-	GOENV         string
-	SMITHBANKCODE string
+	GOPATH    string
+	GOAPP     string
+	GOENV     string
+	CREDPGSQL string
 
-	MQ   string
-	HTTP string
+	DBMAXCONN string
+	DBMAXIDLE string
 
-	DBMAXIDLE                  string
-	DBMAXCONN                  string
-	PATHBATCHEARNING           string
-	PATHBATCHLOYALTYRECON      string
-	PATHBATCHDEACTIVATE        string
-	PATHBATCHCLEARINGPOINT     string
-	PATHBATCHREVERSEREDEMPTION string
-	NUMROUTINE                 string
-
-	BANKCODE    string
-	BANKNAME    string
-	DOMAINID    string
-	DOMAINIDFIX string
-
-	CREDMONGODB string
-	CREDMQ      string
-	CREDREDIS   string
-	CREDPGSQL   string
-	CREDSQLITE  string
-
-	BATCH string
-
-	FIXTXNDOMAINHOST string
-	GLDOMAINHOST     string
-
-	RPCRULESTXN string
-	HTTPTXN     string
-	HTTPSELFSVC string
-	HTTPOTHER   string
-	MQADDRESSGL string
-
-	STATICPATH string
-
-	DEBUG string
+	AUTH    string
+	AUTHKEY string
+	AUTHEXP string
 )
 
 func init() {
@@ -66,43 +35,13 @@ func init() {
 	GOPATH = os.Getenv("GOPATH")
 	GOAPP = os.Getenv("GOAPP")
 	GOENV = os.Getenv("GOENV")
-	SMITHBANKCODE = os.Getenv("SMITHBANKCODE")
 
-	MQ = os.Getenv("MQ")
-	HTTP = os.Getenv("HTTP")
-
-	DBMAXIDLE = os.Getenv("DB_MAXIDLE")
-	DBMAXCONN = os.Getenv("DB_MAXCONN")
-	PATHBATCHEARNING = os.Getenv("PATH_BATCH_EARNING")
-	PATHBATCHLOYALTYRECON = os.Getenv("PATH_BATCH_LOYALTY_RECON")
-	PATHBATCHDEACTIVATE = os.Getenv("PATH_BATCH_DEACTIVATE")
-	PATHBATCHCLEARINGPOINT = os.Getenv("PATH_BATCH_CLEARING_POINT")
-	PATHBATCHREVERSEREDEMPTION = os.Getenv("PATH_BATCH_REVERSE_REDEMPTION")
-	NUMROUTINE = os.Getenv("NUM_ROUTINE")
-
-	BANKCODE = os.Getenv("BANK_CODE")
-	BANKNAME = os.Getenv("BANK_NAME")
-	DOMAINID = os.Getenv("DOMAIN_ID")
-	DOMAINIDFIX = os.Getenv("DOMAIN_ID_FIX")
-
-	CREDMONGODB = os.Getenv("CRED_MONGODB")
-	CREDMQ = os.Getenv("CRED_MQ")
-	CREDREDIS = os.Getenv("CRED_REDIS")
 	CREDPGSQL = os.Getenv("CRED_PGSQL")
-	CREDSQLITE = os.Getenv("CRED_SQLITE")
 
-	BATCH = os.Getenv("batch")
+	DBMAXCONN = os.Getenv("DBMAXCONN")
+	DBMAXIDLE = os.Getenv("DBMAXIDLE")
 
-	FIXTXNDOMAINHOST = os.Getenv("FIX_TXN_DOMAIN_HOST")
-	GLDOMAINHOST = os.Getenv("GL_DOMAIN_HOST")
-
-	RPCRULESTXN = os.Getenv("RPC_RULESTXN")
-	HTTPTXN = os.Getenv("HTTP_TXN")
-	HTTPSELFSVC = os.Getenv("HTTP_SELFSVC")
-	HTTPOTHER = os.Getenv("HTTP_OTHER")
-	MQADDRESSGL = os.Getenv("MQ_ADDRESS_GL")
-
-	STATICPATH = os.Getenv("STATIC_PATH")
-
-	DEBUG = os.Getenv("DEBUG")
+	AUTH = os.Getenv("AUTH")
+	AUTHKEY = os.Getenv("AUTHKEY")
+	AUTHEXP = os.Getenv("AUTHEXP")
 }
