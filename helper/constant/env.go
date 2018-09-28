@@ -3,6 +3,7 @@ package constant
 import (
 	"log"
 	"os"
+	"strings"
 
 	"github.com/joho/godotenv"
 )
@@ -54,11 +55,13 @@ var (
 )
 
 func init() {
-	errEnv := godotenv.Load(
-		os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
-			"/environment/env")
-	if errEnv != nil {
-		log.Fatal("fatal load env", errEnv)
+	if os.Getenv("GOENV") == "" || strings.ToLower(os.Getenv("GOENV")) == LOCAL {
+		errEnv := godotenv.Load(
+			os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
+				"/environment/env")
+		if errEnv != nil {
+			log.Fatal("fatal load env", errEnv)
+		}
 	}
 
 	GOPATH = os.Getenv("GOPATH")
