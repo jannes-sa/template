@@ -84,10 +84,10 @@ func (h *HeaderTracer) GRPCSetHeaderTrace(
 	}
 }
 
-func manipulateSpanIDTracer(tracer *HeaderTracer) {
+func manipulateSpanIDTracer(h *HeaderTracer) {
 	hex16Str := hex16Encode()
-	(*tracer).ParSpanID = (*tracer).SpanID
-	(*tracer).SpanID = hex16Str
+	(*h).ParSpanID = (*h).SpanID
+	(*h).SpanID = hex16Str
 }
 
 func hex16Encode() string {

@@ -58,39 +58,6 @@ func SendHTTP(
 	return
 }
 
-// SendHTTPGET ...
-func SendHTTPGET(
-	URL string,
-) (response structs.RespData) {
-	newRequest, errNewRequest := http.NewRequest(
-		"GET",
-		URL,
-		bytes.NewBuffer([]byte("")),
-	)
-	checkError(errNewRequest)
-
-	// 5. set http header
-	newRequest.Header.Set("X-Request-Id", "req-id")
-	newRequest.Header.Set("X-Job-Id", "")
-	newRequest.Header.Set("X-Real-Ip", "ip")
-	newRequest.Header.Set("X-Caller-Service", "serv")
-	newRequest.Header.Set("X-Caller-Domain", "dom")
-	newRequest.Header.Set("X-Device", "device")
-	newRequest.Header.Set("User-Agent", "agent")
-	newRequest.Header.Set("Datetime", "2006-01-02T15:04:05Z")
-	newRequest.Header.Set("Accept", "accept")
-
-	// 6. test send request
-	w := httptest.NewRecorder()
-	beego.BeeApp.Handlers.ServeHTTP(w, newRequest)
-
-	// 7. get response after send request
-	errUnmarshal := json.Unmarshal(w.Body.Bytes(), &response)
-	checkError(errUnmarshal)
-
-	return
-}
-
 // GRPCInit ...
 func GRPCInit() {
 	ctrlRPC.CreateGrpcServer("8080")
