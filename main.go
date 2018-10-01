@@ -48,7 +48,7 @@ func main() {
 			beego.BConfig.WebConfig.DirectoryIndex = true
 			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 		} else {
-			beego.SetLevel(beego.LevelInformational)
+			// beego.SetLevel(beego.LevelInformational)
 			beego.BConfig.RecoverPanic = true
 			beego.BConfig.Listen.ServerTimeOut = 680
 		}
@@ -74,12 +74,12 @@ func setup() {
 }
 
 func initialData() {
-	path := constant.GOPATH + "/src/" + constant.GOAPP + "/storages"
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		os.MkdirAll(path, os.ModePerm)
-	} else {
-		beego.Debug(err)
-	}
+	// path := constant.GOPATH + "/src/" + constant.GOAPP + "/storages"
+	// if _, err := os.Stat(path); os.IsNotExist(err) {
+	// 	os.MkdirAll(path, os.ModePerm)
+	// } else {
+	// 	beego.Debug(err)
+	// }
 
 	grpc.CreateGrpcServer("")
 	go initPprof()
