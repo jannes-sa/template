@@ -1,0 +1,47 @@
+# Specify linter to be executed (in array)
+linter:
+  - aligncheck
+  - deadcode
+  - dupl
+  - errcheck
+  - gas
+  - goconst
+  - gocycloec
+  - goimports
+  - golint
+  - gosimple
+  - ineffassign
+  - interfacer
+  - lll
+  - misspell
+  - safesql
+  - staticcheck
+  - structcheck
+  - unconvert
+  - unparam
+  - unused
+  - varcheck
+
+# exec format (in array) :
+  # [
+  #   {
+  #     "excludelinter":["what linter to be exclude for each directory"]
+  #     "directory":["what directory to run concurently"]
+  #   },
+  #   {
+  #     "excludelinter":["what linter to be exclude for each directory"]
+  #     "directory":["what directory to run concurently"]
+  #   }
+  # ]
+
+exec :
+  [ 
+    { 
+      "excludelinter":["varcheck"], 
+      "directory":["controllers","routers"]
+    }
+    # ,{ 
+    #   "excludelinter":["unused"], 
+    #   "directory":["models",routers"]
+    # }
+  ]
