@@ -26,7 +26,7 @@ func init() {
 	if os.Getenv("GOENV") == "" || strings.ToLower(os.Getenv("GOENV")) == LOCAL {
 		errEnv := godotenv.Load(
 			os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
-				"/environment/env")
+				"/conf/env")
 		if errEnv != nil {
 			log.Fatal("fatal load env", errEnv)
 		}
