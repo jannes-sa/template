@@ -2,7 +2,10 @@ package grpc
 
 import (
 	"net"
+	"os"
+	"os/signal"
 	"strconv"
+	"syscall"
 
 	"github.com/astaxie/beego"
 
@@ -122,5 +125,11 @@ func CreateGrpcServer(portTemp string) {
 		errGrpc := s.Serve(lis)
 		helper.CheckErr("Error Connect gRPC to Serve()", errGrpc)
 	}()
+
+	shutdown := make(chan os.Signal)
+	signal.Notify(shutdown, syscall.SIGINT, syscall.SIGTERM)
+	<-shutdown
+	s.GracefulStop()
+	beego.Critical("Shutdown Gracefully gRPC")
 
 }

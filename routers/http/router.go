@@ -14,13 +14,11 @@ func init() {
 // Router - Routing
 func Router() {
 	beego.InsertFilter("/*", beego.BeforeRouter, BeforeFunc, true)
-
 	beego.ErrorHandler("404", pageNotFound)
 
 	ns := beego.NewNamespace("/template/v1",
-		// beego.NSBefore(Middleware),
-
 		// Start: Add Your HTTP Router Here //
+
 		/* this router only for testing purpose */
 		beego.NSNamespace("/test",
 			beego.NSInclude(
@@ -33,9 +31,7 @@ func Router() {
 	)
 
 	beego.AddNamespace(ns)
-
 	beego.SetStaticPath("/storages", "storages")
-
 	beego.InsertFilter("/*", beego.FinishRouter, AfterFunc, true)
 }
 

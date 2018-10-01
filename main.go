@@ -43,6 +43,7 @@ func main() {
 	if constant.GOENV != "" && constant.GOAPP == beego.BConfig.AppName {
 		time.AfterFunc(1*time.Second, initialData)
 
+		beego.BConfig.Listen.Graceful = true
 		if beego.BConfig.RunMode == "dev" {
 			beego.BConfig.WebConfig.DirectoryIndex = true
 			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
@@ -51,7 +52,9 @@ func main() {
 			beego.BConfig.RecoverPanic = true
 			beego.BConfig.Listen.ServerTimeOut = 680
 		}
+
 		beego.Run()
+
 	} else {
 		beego.Error("SETUP GOENV && GOAPP FIRST")
 	}

@@ -1,0 +1,32 @@
+linter:
+  - aligncheck
+  - deadcode
+  - dupl
+  - errcheck
+  - gas
+  - goconst
+  - gocycloec
+  - goimports
+  - golint
+  - gosimple
+  - ineffassign
+  - interfacer
+  - lll
+  - misspell
+  - safesql
+  - staticcheck
+  - structcheck
+  - unconvert
+  - unparam
+  - unused
+  - varcheck
+
+directory:
+  - adapter
+  - constants
+  - controllers
+  - helper
+  - models
+  - routers
+  - structs
+  - thirdparty
