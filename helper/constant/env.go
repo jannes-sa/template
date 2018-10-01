@@ -1,10 +1,10 @@
 package constant
 
 import (
-	"log"
 	"os"
 	"strings"
 
+	"github.com/astaxie/beego"
 	"github.com/joho/godotenv"
 )
 
@@ -28,7 +28,7 @@ func init() {
 			os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
 				"/conf/env")
 		if errEnv != nil {
-			log.Fatal("fatal load env", errEnv)
+			beego.Critical("fatal load env", errEnv)
 		}
 	}
 
