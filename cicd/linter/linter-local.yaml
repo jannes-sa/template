@@ -6,13 +6,13 @@ linter:
   - errcheck
   - gas
   - goconst
-  - gocycloec
-  - goimports
+  - gocyclo
+  # - goimports
+  # - gotype
   - golint
   - gosimple
   - ineffassign
   - interfacer
-  - lll
   - misspell
   - safesql
   - staticcheck
@@ -37,11 +37,37 @@ linter:
 exec :
   [ 
     { 
-      "excludelinter":["varcheck"], 
-      "directory":["controllers","routers"]
+      "excludelinter":[], 
+      "directory":["controllers/grpc","controllers/http"]
+    },
+    { 
+      "excludelinter":[], 
+      "directory":["helper","helper/timetn"]
+    },
+    { 
+      "excludelinter":[], 
+      "directory":[
+        "models",
+        "models/db",
+        "models/db/interfaces",
+        "models/db/pgsql",
+        "models/logic",
+        "models/stub"
+      ]
+    },
+    { 
+      "excludelinter":["dupl"], 
+      "directory":[
+        "structs",
+        "structs/api/grpc",
+        "structs/api/http",
+        "structs/db",
+        "structs/external",
+        "structs/logic"
+      ]
+    },
+    { 
+      "excludelinter":[], 
+      "directory":["thirdparty/mq"]
     }
-    # ,{ 
-    #   "excludelinter":["unused"], 
-    #   "directory":["models",routers"]
-    # }
   ]

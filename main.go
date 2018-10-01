@@ -74,11 +74,9 @@ func setup() {
 }
 
 func initialData() {
-	beego.Debug("checking dir storage")
 	path := constant.GOPATH + "/src/" + constant.GOAPP + "/storages"
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.MkdirAll(path, os.ModePerm)
-		beego.Debug("created storage dir")
 	} else {
 		beego.Debug(err)
 	}
