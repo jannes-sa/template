@@ -9,13 +9,13 @@ export VERSION_IMG=v1
 export VERSION_MINOR_IMG=0
 export VERSION_IMG_STAG=v1stag
 export VERSION_MINOR_IMG_STAG=0
-export GOPATH=/var/lib/jenkins/workspace/SAV_TXN
+export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
 
 #build image
 pwd
-sed -i -e "s/runmode = dev/runmode = prod/g" $GOPATH/src/txn/conf/app.conf
-cat $GOPATH/src/txn/conf/app.conf
-cd $GOPATH/src/txn
+sed -i -e "s/runmode = dev/runmode = prod/g" $GOPATH/src/template/conf/app.conf
+cat $GOPATH/src/template/conf/app.conf
+cd $GOPATH/src/template
 pwd
 ls -lah
-docker build -t tnindo/txn:$VERSION_IMG_STAG.$VERSION_MINOR_IMG_STAG.$BUILD_ID -f Dockerfile .
+docker build -t tnindo/DLOR-Loan:$VERSION_IMG_STAG.$VERSION_MINOR_IMG_STAG.$BUILD_ID -f Dockerfile .
