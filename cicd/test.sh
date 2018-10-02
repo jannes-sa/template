@@ -1,11 +1,11 @@
 #!/bin/bash
-export GOPATH=/var/lib/jenkins/workspace/SAV_TXN
+export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
 # export GOPATH=/home/jannes/work/TN/sav-txn
 
 export GOENV=devci
-export GOAPP=txn
+export GOAPP=template
 export RPC=ci
-export APP_DIRECTORY=/go/src/txn
+export APP_DIRECTORY=/go/src/template
 export CRED_MONGODB=mongodb://172.17.0.1:27017
 export CRED_MQ=amqp://guest:guest@172.17.0.1:5672/
 export CRED_REDIS=172.17.0.1:6379

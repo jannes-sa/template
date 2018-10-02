@@ -18,10 +18,10 @@ FROM golang:1.9.2
 
 ### START: add source ###
 
-	RUN mkdir -p /go/src/txn
-	RUN mkdir -p /go/src/txn/logs
+	RUN mkdir -p /go/src/template
+	RUN mkdir -p /go/src/template/logs
 
-	ADD . /go/src/txn
+	ADD . /go/src/template
 
 ### END: add source ###
 
@@ -29,14 +29,14 @@ FROM golang:1.9.2
 ### START: Initialize dependency ###
 
 	RUN go get github.com/beego/bee
-	WORKDIR /go/src/txn
+	WORKDIR /go/src/template
 
 ### END: Initialize dependency ###
 
 ### START: Build Package ###
 	RUN go build
-	# RUN /go/src/txn/runtime
+	# RUN /go/src/template/runtime
 
 ### END: Build Package ###
 
-CMD ["/go/src/txn/txn"]
+CMD ["/go/src/template/template"]
