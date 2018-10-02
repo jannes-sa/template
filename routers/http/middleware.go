@@ -1,6 +1,7 @@
 package http
 
 import (
+	"net/http"
 	"strconv"
 	"strings"
 	ctrl "template/controllers/http"
@@ -160,4 +161,12 @@ func BeforeFunc(c *context.Context) {
 // AfterFunc to execute progress after response
 func AfterFunc(c *context.Context) {
 
+}
+
+// pageNotFound ..
+func pageNotFound(rw http.ResponseWriter, r *http.Request) {
+	_, err := rw.Write([]byte(""))
+	if err != nil {
+		beego.Warning("NOT FOUND ERROR")
+	}
 }

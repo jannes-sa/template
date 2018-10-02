@@ -1,7 +1,6 @@
 package http
 
 import (
-	h "net/http"
 	ctrl "template/controllers/http"
 
 	"github.com/astaxie/beego"
@@ -33,12 +32,4 @@ func Router() {
 	beego.AddNamespace(ns)
 	beego.SetStaticPath("/storages", "storages")
 	beego.InsertFilter("/*", beego.FinishRouter, AfterFunc, true)
-}
-
-// pageNotFound ..
-func pageNotFound(rw h.ResponseWriter, r *h.Request) {
-	_, err := rw.Write([]byte(""))
-	if err != nil {
-		beego.Warning("NOT FOUND ERROR")
-	}
 }
