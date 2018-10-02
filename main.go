@@ -8,6 +8,7 @@ import (
 	"template/models/db"
 	"template/routers/grpc"
 	_ "template/routers/http"
+	_ "template/structs/db"
 	"time"
 
 	_ "github.com/lib/pq"

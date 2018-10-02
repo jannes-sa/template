@@ -1,9 +1,11 @@
-package models
+package db
+
+import "github.com/astaxie/beego/orm"
 
 import "time"
 
 type TransactionHistory struct {
-	AccountNumber          string    `orm:"column(account_number)"`
+	AccountNumber          string    `orm:"column(account_number);pk"`
 	SequenceRef            int       `orm:"column(sequence_ref)"`
 	TransactionTime        time.Time `orm:"column(transaction_time);type(timestamp with time zone)"`
 	SystemReferenceId      string    `orm:"column(system_reference_id)"`
@@ -44,4 +46,12 @@ type TransactionHistory struct {
 	ValueOfRedemption      float64   `orm:"column(value_of_redemption);null"`
 	OriginalReverseJobId   string    `orm:"column(original_reverse_job_id)"`
 	IsReverse              bool      `orm:"column(is_reverse);null"`
+}
+
+func (u *TransactionHistory) TableName() string {
+	return "transaction_history"
+}
+
+func init() {
+	orm.RegisterModel(new(TransactionHistory))
 }
