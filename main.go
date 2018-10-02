@@ -46,7 +46,11 @@ func main() {
 		beego.BConfig.Listen.Graceful = true
 		if beego.BConfig.RunMode == "dev" {
 			beego.BConfig.WebConfig.DirectoryIndex = true
-			beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
+			beego.BConfig.Listen.EnableAdmin = true
+			beego.BConfig.Listen.AdminAddr = "localhost"
+
+			adminPort, _ := strconv.Atoi("2" + strconv.Itoa(beego.BConfig.Listen.HTTPPort))
+			beego.BConfig.Listen.AdminPort = adminPort
 		} else {
 			// beego.SetLevel(beego.LevelInformational)
 			beego.BConfig.RecoverPanic = true
