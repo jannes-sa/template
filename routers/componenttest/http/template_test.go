@@ -2,7 +2,6 @@ package http
 
 import (
 	"encoding/json"
-	"strconv"
 	"template/helper/constant"
 	"template/routers/componenttest"
 	"template/structs"
@@ -10,12 +9,6 @@ import (
 	"testing"
 
 	. "github.com/smartystreets/goconvey/convey"
-
-	"github.com/astaxie/beego"
-)
-
-var (
-	host string = "http://127.0.0.1:" + strconv.Itoa(beego.BConfig.Listen.HTTPPort)
 )
 
 func TestTemplateSuccess(t *testing.T) {
