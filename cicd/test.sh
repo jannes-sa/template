@@ -1,7 +1,6 @@
 #!/bin/bash
-export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
-# export GOPATH=/home/tnis/works/TN/dlor
-export DOCKERWORKDIR=$GOPATH/src/template
+# export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
+export GOPATH=/home/tnis/works/TN/dlor
 
 export GOENV=devci
 export GOAPP=template
@@ -38,6 +37,7 @@ export PATH_BATCH_DEACTIVATE=storages/batch/deactivate/
 export PATH_BATCH_REVERSE_REDEMPTION=storages/batch/reverseredemption/
 export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
+export DOCKERWORKDIR=$GOPATH/src/template
 
 cat $GOPATH/src/template/conf/ci/mq.json
 cat $GOPATH/src/template/conf/ci/mongodb.json
@@ -64,6 +64,6 @@ go test -v --cover \
 # Run SonarQube
 cd $GOPATH/src/template &&
 docker run --rm \
-    -v $(pwd):$GOPATH \
+    -v $(pwd):/var/lib/jenkins/workspace/DLOR_Collect/src/template \
     -w=$DOCKERWORKDIR --network=sonar \
     nikhuber/sonar-scanner:latest sonar-scanner
