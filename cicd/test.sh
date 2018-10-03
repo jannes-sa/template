@@ -48,12 +48,12 @@ cd $GOPATH/src/template && $GOPATH/bin/bee migrate -driver=postgres -conn="postg
 cd $WORKDIR &&
 go test -v --cover \
 ./models/logic/cards/... \
--coverprofile=$WORKDIR/cicd/sonarqube-report/coverage-report.out
+-coverprofile=$WORKDIR/sonarqube-report/coverage-report.out
 
 cd $WORKDIR &&
 go test -v --cover \
 ./models/logic/cards/... \
--json > $WORKDIR/cicd/sonarqube-report/unit-report.json
+-json > $WORKDIR/sonarqube-report/unit-report.json
 
 # # Component test
 # cd $GOPATH/src/template/routers/component && 
@@ -67,3 +67,9 @@ docker run --rm \
     -v $(pwd):$WORKDIR \
     -w=$WORKDIR --network=sonar \
     nikhuber/sonar-scanner:latest sonar-scanner
+
+
+# docker run --rm \
+#     -v $(pwd):/var/lib/jenkins/workspace/DLOR_Collect/src/template \
+#     -w=/var/lib/jenkins/workspace/DLOR_Collect/src/template --network=sonar \
+#     nikhuber/sonar-scanner:latest sonar-scanner
