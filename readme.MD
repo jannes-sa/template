@@ -6,7 +6,7 @@ helper/constant/tablename/{tablename}.go
 
 ``` conf/bin/dbstructgen -table="{nametable}"```
 
-#### routergen to generate structs from postgres DB name tablename
+#### routergen to generate Routing and Controllers
 it will created  in
 routers/http/{controller_name}.go
 controllers/http/{controller_name}.go
