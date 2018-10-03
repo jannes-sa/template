@@ -389,7 +389,7 @@ func GenJobID() string {
 
 func algorithmJobID() string {
 	crc := GenCRC32()
-	domain := "02"
+	domain := constant.DOMAIN
 	scrnm := getSecureRandomNumber(secureDigits)
 
 	jobID := strings.ToUpper(crc + domain + scrnm)
