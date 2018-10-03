@@ -6,11 +6,14 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
+	"strconv"
 	"template/models/db"
 	ctrlRPC "template/routers/grpc"
 	routerHTTP "template/routers/http"
 	"template/structs"
 	"time"
+
+	_ "github.com/lib/pq"
 
 	"github.com/astaxie/beego"
 )
@@ -60,7 +63,7 @@ func SendHTTP(
 
 // GRPCInit ...
 func GRPCInit() {
-	ctrlRPC.CreateGrpcServer("8080")
+	ctrlRPC.CreateGrpcServer(strconv.Itoa(beego.BConfig.Listen.HTTPPort), "test")
 	time.Sleep(2 * time.Second)
 }
 

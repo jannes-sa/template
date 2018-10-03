@@ -104,7 +104,7 @@ func (c *connection) NewServer() error {
 }
 
 // CreateGrpcServer ...
-func CreateGrpcServer(portTemp string) {
+func CreateGrpcServer(portTemp string, customValidate ...string) {
 
 	port := ":5" + portTemp
 	if portTemp == "" {
@@ -125,6 +125,12 @@ func CreateGrpcServer(portTemp string) {
 		errGrpc := s.Serve(lis)
 		helper.CheckErr("Error Connect gRPC to Serve()", errGrpc)
 	}()
+
+	if len(customValidate) > 0 {
+		if customValidate[0] == "test" {
+			return
+		}
+	}
 
 	shutdown := make(chan os.Signal)
 	signal.Notify(shutdown, syscall.SIGINT, syscall.SIGTERM)

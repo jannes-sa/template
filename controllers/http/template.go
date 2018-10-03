@@ -5,17 +5,19 @@ import (
 	"template/helper"
 	"template/structs"
 	structsAPI "template/structs/api/http"
+)
 
+import (
 	"github.com/astaxie/beego"
 )
 
-// TestController operations for Test
-type TestController struct {
+// TemplateController operations for Template
+type TemplateController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *TestController) URLMapping() {
+func (c *TemplateController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -25,12 +27,12 @@ func (c *TestController) URLMapping() {
 
 // Post ...
 // @Title Create
-// @Description create Test
-// @Param	body		body 	models.Test	true		"body for Test content"
-// @Success 201 {object} models.Test
+// @Description create Template
+// @Param	body		body 	models.Template	true		"body for Template content"
+// @Success 201 {object} models.Template
 // @Failure 403 body is empty
 // @router / [post]
-func (c *TestController) Post() {
+func (c *TemplateController) Post() {
 	errCode := make([]structs.TypeError, 0)
 
 	var (
@@ -68,12 +70,12 @@ func (c *TestController) Post() {
 
 // GetOne ...
 // @Title GetOne
-// @Description get Test by id
+// @Description get Template by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Test
+// @Success 200 {object} models.Template
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *TestController) GetOne() {
+func (c *TemplateController) GetOne() {
 	errCode := make([]structs.TypeError, 0)
 
 	id := c.Ctx.Input.Param(":id")
@@ -85,39 +87,39 @@ func (c *TestController) GetOne() {
 
 // GetAll ...
 // @Title GetAll
-// @Description get Test
+// @Description get Template
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Test
+// @Success 200 {object} models.Template
 // @Failure 403
 // @router / [get]
-func (c *TestController) GetAll() {
+func (c *TemplateController) GetAll() {
 
 }
 
 // Put ...
 // @Title Put
-// @Description update the Test
+// @Description update the Template
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Test	true		"body for Test content"
-// @Success 200 {object} models.Test
+// @Param	body		body 	models.Template	true		"body for Template content"
+// @Success 200 {object} models.Template
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *TestController) Put() {
+func (c *TemplateController) Put() {
 
 }
 
 // Delete ...
 // @Title Delete
-// @Description delete the Test
+// @Description delete the Template
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *TestController) Delete() {
+func (c *TemplateController) Delete() {
 
 }

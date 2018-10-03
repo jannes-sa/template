@@ -1,4 +1,4 @@
-package testComponent
+package http
 
 import (
 	"template/routers/componenttest"
@@ -6,6 +6,5 @@ import (
 
 func init() {
 	componenttest.HTTPInit()
-	componenttest.GRPCInit()
 	componenttest.DBinit()
 }

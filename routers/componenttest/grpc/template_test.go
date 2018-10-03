@@ -1,7 +1,8 @@
-package testComponent
+package grpc
 
 import (
 	"encoding/json"
+	"strconv"
 	"template/helper"
 	"template/helper/timetn"
 	"template/structs"
@@ -34,7 +35,7 @@ func TestComponentGRPCSuccess(t *testing.T) {
 
 	resp, err := rpc.SendGRPCComponentTest(
 		"/rpcTest",
-		"127.0.0.1:58080",
+		"127.0.0.1:5"+strconv.Itoa(beego.BConfig.Listen.HTTPPort),
 		[]byte(`
 			{"date":"2018-05-16","report_id":1}
 		`),
@@ -70,7 +71,7 @@ func TestComponentGRPC404(t *testing.T) {
 
 	resp, err := rpc.SendGRPCComponentTest(
 		"/404",
-		"127.0.0.1:58080",
+		"127.0.0.1:5"+strconv.Itoa(beego.BConfig.Listen.HTTPPort),
 		[]byte(`
 			{"date":"2018-05-16","report_id":1}
 		`),

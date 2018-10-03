@@ -18,9 +18,9 @@ func Router() {
 	ns := beego.NewNamespace("/template/v1",
 		/*:STARTHTTP*/
 
-		beego.NSNamespace("/test",
+		beego.NSNamespace("/template",
 			beego.NSInclude(
-				&ctrl.TestController{},
+				&ctrl.TemplateController{},
 			),
 		),
 		/*:ENDHTTP*/
