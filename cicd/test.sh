@@ -1,6 +1,6 @@
 #!/bin/bash
-# export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
-export GOPATH=/home/tnis/works/TN/dlor
+export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
+# export GOPATH=/home/tnis/works/TN/dlor
 
 export GOENV=devci
 export GOAPP=template
