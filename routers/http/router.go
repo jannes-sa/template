@@ -18,13 +18,11 @@ func Router() {
 	ns := beego.NewNamespace("/template/v1",
 		/*:STARTHTTP*/
 
-		/* this router only for testing purpose */
 		beego.NSNamespace("/test",
 			beego.NSInclude(
 				&ctrl.TestController{},
 			),
 		),
-
 		/*:ENDHTTP*/
 	)
 
