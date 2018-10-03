@@ -9,7 +9,7 @@ export VERSION_IMG=v1
 export VERSION_MINOR_IMG=0
 export VERSION_IMG_STAG=v1stag
 export VERSION_MINOR_IMG_STAG=0
-export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
+export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
 
 #build image
 pwd
@@ -18,4 +18,4 @@ cat $GOPATH/src/template/conf/app.conf
 cd $GOPATH/src/template
 pwd
 ls -lah
-docker build -t tnindo/DLOR-Loan:$VERSION_IMG_STAG.$VERSION_MINOR_IMG_STAG.$BUILD_ID -f Dockerfile .
+docker build -t tnindo/dlor_collect:$VERSION_IMG_STAG.$VERSION_MINOR_IMG_STAG.$BUILD_ID -f Dockerfile .

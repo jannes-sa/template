@@ -1,7 +1,7 @@
 #!/bin/bash
 export GOENV=devci
 export GOAPP=template
-export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
+export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
 
 # process download gometalinter
 pwd

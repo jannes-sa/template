@@ -1,5 +1,5 @@
 #!/bin/bash
-export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
+export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
 # export GOPATH=/home/jannes/work/TN/sav-txn
 
 export GOENV=devci
@@ -37,26 +37,30 @@ export PATH_BATCH_DEACTIVATE=storages/batch/deactivate/
 export PATH_BATCH_REVERSE_REDEMPTION=storages/batch/reverseredemption/
 export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
-cat $GOPATH/src/txn/conf/ci/mq.json
-cat $GOPATH/src/txn/conf/ci/mongodb.json
-cd $GOPATH/src/txn && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
-cd $GOPATH/src/txn/models/logic && go test -v --cover
-cd $GOPATH/src/txn/models/logic/accrue && go test -v --cover
-cd $GOPATH/src/txn/models/logic/mymo-posting && go test -v --cover
-cd $GOPATH/src/txn/models/logic/posting && go test -v --cover
-cd $GOPATH/src/txn/models/logic/posting/interdomain && go test -v --cover
-cd $GOPATH/src/txn/models/logic/prepost/interdomain && go test -v --cover
-cd $GOPATH/src/txn/models/logic/batch/earning && go test -v --cover
-cd $GOPATH/src/txn/models/logic/batch/deactivate && go test -v --cover
-cd $GOPATH/src/txn/models/logic/batch/reverseredemption && go test -v --cover
+cat $GOPATH/src/DLOR_Collect/conf/ci/mq.json
+cat $GOPATH/src/DLOR_Collect/conf/ci/mongodb.json
 
-cd $GOPATH/src/txn/routers/component/accrue && go test -v
-cd $GOPATH/src/txn/routers/component/interdomain && go test -v
-cd $GOPATH/src/txn/routers/component/commontransaction && go test -v
-cd $GOPATH/src/txn/routers/component/loyaltyTransaction && go test -v --cover
-cd $GOPATH/src/txn/models/logic/batch/loyaltyrecon && go test -v --cover
-cd $GOPATH/src/txn/models/logic/batch/clearingpoint && go test -v --cover
+cd $GOPATH/src/DLOR_Collect && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
 
-cd $GOPATH/src/txn/routers/component/batch && go test -v
-cd $GOPATH/src/txn/routers/component/reconcile && go test -v
-cd $GOPATH/src/txn/routers/component/clearingpoint && go test -v
+# Unit test 
+cd $GOPATH/src/DLOR_Collect && 
+go test -v --cover \
+./models/logic/... \
+-json > $GOPATH/src/DLOR_Collect/cicd/sonarqube-report/unit-report.json \
+-coverprofile=$GOPATH/src/DLOR_Collect/cicd/sonarqube-report/coverage-report.out
+
+# Component test
+cd $GOPATH/src/DLOR_Collect/routers/component && 
+go test -v \
+./accrue/... \
+./interdomain/... \
+./commontransaction/... \
+./reconcile/... \
+./clearingpoint/...
+
+# Run SonarQube
+cd $GOPATH/src/DLOR_Collect &&
+docker run --rm \
+    --mount type=bind,source="$(pwd)",target=$DOCKERWORKDIR \
+    -w=$DOCKERWORKDIR --network=sonar \
+    nikhuber/sonar-scanner:latest sonar-scanner
