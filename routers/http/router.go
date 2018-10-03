@@ -16,7 +16,7 @@ func Router() {
 	beego.ErrorHandler("404", pageNotFound)
 
 	ns := beego.NewNamespace("/template/v1",
-		// Start: Add Your HTTP Router Here //
+		/*:STARTHTTP*/
 
 		/* this router only for testing purpose */
 		beego.NSNamespace("/test",
@@ -25,8 +25,7 @@ func Router() {
 			),
 		),
 
-		// End : Add Your HTTP Router Here //
-
+		/*:ENDHTTP*/
 	)
 
 	beego.AddNamespace(ns)
