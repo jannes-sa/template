@@ -1,6 +1,7 @@
 #!/bin/bash
 export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
-# export GOPATH=/home/jannes/work/TN/sav-txn
+# export GOPATH=/home/tnis/works/TN/dlor
+export DOCKERWORKDIR=$GOPATH/src/template
 
 export GOENV=devci
 export GOAPP=template
@@ -37,7 +38,6 @@ export PATH_BATCH_DEACTIVATE=storages/batch/deactivate/
 export PATH_BATCH_REVERSE_REDEMPTION=storages/batch/reverseredemption/
 export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
-export DOCKERWORKDIR=$GOPATH/src/template
 
 cat $GOPATH/src/template/conf/ci/mq.json
 cat $GOPATH/src/template/conf/ci/mongodb.json
@@ -45,24 +45,25 @@ cat $GOPATH/src/template/conf/ci/mongodb.json
 cd $GOPATH/src/template && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
 
 # Unit test 
-cd $GOPATH/src/template && 
+cd $GOPATH/src/template &&
 go test -v --cover \
-./models/logic/... \
--json > $GOPATH/src/template/cicd/sonarqube-report/unit-report.json \
+./models/logic/cards/... \
 -coverprofile=$GOPATH/src/template/cicd/sonarqube-report/coverage-report.out
 
-# Component test
-cd $GOPATH/src/template/routers/component && 
-go test -v \
-./accrue/... \
-./interdomain/... \
-./commontransaction/... \
-./reconcile/... \
-./clearingpoint/...
+cd $GOPATH/src/template &&
+go test -v --cover \
+./models/logic/cards/... \
+-json > $GOPATH/src/template/cicd/sonarqube-report/unit-report.json
+
+# # Component test
+# cd $GOPATH/src/template/routers/component && 
+# go test -v \
+# ./accrue/... \
+# ./clearingpoint/...
 
 # Run SonarQube
 cd $GOPATH/src/template &&
 docker run --rm \
-    --mount type=bind,source="$(pwd)",target=$DOCKERWORKDIR \
+    -v $(pwd):$GOPATH \
     -w=$DOCKERWORKDIR --network=sonar \
     nikhuber/sonar-scanner:latest sonar-scanner
