@@ -10,7 +10,7 @@ export DOCKER_PASSWORD=fakename
 export VERSION_IMG=v1stag
 export VERSION_MINOR_IMG=0
 export OURAPPNAME=template
-export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
+export GOPATH=/var/lib/jenkins/workspace/DLOR-Collect_service
 
 # deploy staging
 kubectl get pod

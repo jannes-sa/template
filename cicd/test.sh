@@ -1,5 +1,5 @@
 #!/bin/bash
-export GOPATH=/var/lib/jenkins/workspace/DLOR-Loan
+export GOPATH=/var/lib/jenkins/workspace/DLOR-Collect_service
 # export GOPATH=/home/jannes/work/TN/sav-txn
 
 export GOENV=devci
@@ -37,20 +37,20 @@ export PATH_BATCH_DEACTIVATE=storages/batch/deactivate/
 export PATH_BATCH_REVERSE_REDEMPTION=storages/batch/reverseredemption/
 export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
-cat $GOPATH/src/DLOR-Loan/conf/ci/mq.json
-cat $GOPATH/src/DLOR-Loan/conf/ci/mongodb.json
+cat $GOPATH/src/DLOR-Collect_service/conf/ci/mq.json
+cat $GOPATH/src/DLOR-Collect_service/conf/ci/mongodb.json
 
-cd $GOPATH/src/DLOR-Loan && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
+cd $GOPATH/src/DLOR-Collect_service && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
 
 # Unit test 
-cd $GOPATH/src/DLOR-Loan && 
+cd $GOPATH/src/DLOR-Collect_service && 
 go test -v --cover \
 ./models/logic/... \
--json > $GOPATH/src/DLOR-Loan/cicd/sonarqube-report/unit-report.json \
--coverprofile=$GOPATH/src/DLOR-Loan/cicd/sonarqube-report/coverage-report.out
+-json > $GOPATH/src/DLOR-Collect_service/cicd/sonarqube-report/unit-report.json \
+-coverprofile=$GOPATH/src/DLOR-Collect_service/cicd/sonarqube-report/coverage-report.out
 
 # Component test
-cd $GOPATH/src/DLOR-Loan/routers/component && 
+cd $GOPATH/src/DLOR-Collect_service/routers/component && 
 go test -v \
 ./accrue/... \
 ./interdomain/... \
@@ -59,7 +59,7 @@ go test -v \
 ./clearingpoint/...
 
 # Run SonarQube
-cd $GOPATH/src/DLOR-Loan &&
+cd $GOPATH/src/DLOR-Collect_service &&
 docker run --rm \
     --mount type=bind,source="$(pwd)",target=$DOCKERWORKDIR \
     -w=$DOCKERWORKDIR --network=sonar \
