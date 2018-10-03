@@ -24,7 +24,6 @@ func Router() {
 				&ctrl.TestController{},
 			),
 		),
-
 		/*:ENDHTTP*/
 	)
 
