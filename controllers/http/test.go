@@ -66,5 +66,5 @@ func (c *TestController) TestPost() {
 
 	c.Data["json"] = res
 
-	SendOutput(c.Ctx, c.Data["json"], errCode)
+	SendOutput(c.Ctx, res, errCode)
 }
