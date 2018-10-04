@@ -1,4 +1,4 @@
-FROM golang:1.9.2
+FROM golang:1.9.2-alpine
 
 ### START: Setting Environment ###
 
@@ -21,7 +21,9 @@ FROM golang:1.9.2
 	RUN mkdir -p /go/src/template
 	RUN mkdir -p /go/src/template/logs
 
-	ADD . /go/src/template
+	ADD conf /go/src/template
+	ADD storages /go/src/template
+	ADD database /go/src/template
 
 ### END: add source ###
 
