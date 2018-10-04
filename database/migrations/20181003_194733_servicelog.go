@@ -1,6 +1,8 @@
 package main
 
 import (
+	"template/helper/constant/tablename"
+
 	"github.com/astaxie/beego/migration"
 )
 
@@ -19,8 +21,8 @@ func init() {
 
 // Run the migrations
 func (m *Servicelog_20181003_194733) Up() {
-	// use m.SQL("CREATE TABLE ...") to make schema update
-
+	dt := "20181003"
+	m.SQL(GetQuery(tablename.ServiceLog, dt, "service_log"))
 }
 
 // Reverse the migrations

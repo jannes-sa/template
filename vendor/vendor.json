@@ -51,10 +51,10 @@
 			"revisionTime": "2018-07-31T13:18:48Z"
 		},
 		{
-			"checksumSHA1": "wDcDja1mEgD81302STxgC+p+TdQ=",
+			"checksumSHA1": "3pGLaor7JnvIIy7dZvG7cbAlM9w=",
 			"path": "github.com/astaxie/beego/migration",
-			"revision": "c5118e9535f237996bae7c7baebe4ed4247cb2c6",
-			"revisionTime": "2017-10-14T08:28:56Z"
+			"revision": "053a075344c118a5cc41981b29ef612bb53d20ca",
+			"revisionTime": "2018-07-31T13:18:48Z"
 		},
 		{
 			"checksumSHA1": "skbVWA35zzQ+Yml14zyULI1OPic=",
