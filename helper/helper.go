@@ -178,7 +178,7 @@ func SetHeaderRPC(befMsStr string, reqID string,
 	header := structsRPC.TypeHeaderRPC{
 		ReqID:       reqID,
 		Date:        timetn.Now(),
-		ContentType: "application/json",
+		ContentType: "application/grpc",
 		RoundTrip:   strconv.FormatInt(afterMs, 10),
 		Error:       errorHeader,
 	}

@@ -2,8 +2,13 @@ package grpc
 
 import (
 	ctrl "template/controllers/grpc"
+	"template/helper/constant"
 	pb "template/proto"
 	"template/structs"
+)
+
+var (
+	prefix = "/" + constant.GOAPP + "/" + constant.VERSION
 )
 
 type fnRouteRPC func(
@@ -20,7 +25,8 @@ func init() {
 
 func Router() {
 	routeMap = map[string]fnRouteRPC{
-		"/rpcTest":   ctrl.RPCTest,
-		"/rpcFailed": ctrl.RPCTestFailed,
+		/*:STARTGRPC*/
+		prefix + "/template": ctrl.RPCTemplate,
+		/*:ENDGRPC*/
 	}
 }

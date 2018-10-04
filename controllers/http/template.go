@@ -5,9 +5,7 @@ import (
 	"template/helper"
 	"template/structs"
 	structsAPI "template/structs/api/http"
-)
 
-import (
 	"github.com/astaxie/beego"
 )
 

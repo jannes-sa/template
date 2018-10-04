@@ -2,7 +2,6 @@ package grpc
 
 import (
 	"encoding/json"
-	"strconv"
 	"template/helper"
 	"template/helper/timetn"
 	"template/structs"
@@ -12,20 +11,26 @@ import (
 	"testing"
 
 	"github.com/astaxie/beego"
+	. "github.com/smartystreets/goconvey/convey"
 )
 
-func TestComponentGRPCSuccess(t *testing.T) {
+func TestTemplate(t *testing.T) {
 	reqID := helper.GenJobID()
 
 	var errorHeader structs.TypeGRPCError
 	header := structsRPC.TypeHeaderRPC{
 		ReqID:       reqID,
 		Date:        timetn.Now(),
-		ContentType: "application/json",
+		ContentType: "application/grpc",
 		RoundTrip:   "",
 		Error:       errorHeader,
 	}
 	headerByte, _ := json.Marshal(header)
+
+	var req structsRPC.ReqTest
+	req.ID = 1
+	req.Data = "requestdata"
+	reqBy, _ := json.Marshal(req)
 
 	var tracer structsAPI.HeaderTracer
 	tracer.ParSpanID = "ParSpanID"
@@ -34,88 +39,26 @@ func TestComponentGRPCSuccess(t *testing.T) {
 	tracer.XReqID = "XReqID"
 
 	resp, err := rpc.SendGRPCComponentTest(
-		"/rpcTest",
-		"127.0.0.1:5"+strconv.Itoa(beego.BConfig.Listen.HTTPPort),
-		[]byte(`
-			{"date":"2018-05-16","report_id":1}
-		`),
+		prefix+"/template",
+		host,
+		reqBy,
 		headerByte,
 		reqID,
 		tracer,
 	)
 
-	beego.Debug(err)
-	beego.Debug(string(resp.Header))
-	beego.Debug(string(resp.Body))
-	beego.Debug(resp.Metadata)
-}
+	var resHeader structsRPC.TypeHeaderRPC
+	json.Unmarshal(resp.Header, &resHeader)
 
-func TestComponentGRPC404(t *testing.T) {
-	reqID := helper.GenJobID()
+	var resBody structsRPC.ResTest
+	json.Unmarshal(resp.Body, &resBody)
+	beego.Debug("resHeader => ", resHeader)
+	beego.Debug("resBody => ", resBody)
 
-	var errorHeader structs.TypeGRPCError
-	header := structsRPC.TypeHeaderRPC{
-		ReqID:       reqID,
-		Date:        timetn.Now(),
-		ContentType: "application/json",
-		RoundTrip:   "",
-		Error:       errorHeader,
-	}
-	headerByte, _ := json.Marshal(header)
-
-	var tracer structsAPI.HeaderTracer
-	tracer.ParSpanID = "ParSpanID"
-	tracer.SpanID = "SpanID"
-	tracer.TraceID = "TraceID"
-	tracer.XReqID = "XReqID"
-
-	resp, err := rpc.SendGRPCComponentTest(
-		"/404",
-		"127.0.0.1:5"+strconv.Itoa(beego.BConfig.Listen.HTTPPort),
-		[]byte(`
-			{"date":"2018-05-16","report_id":1}
-		`),
-		headerByte,
-		reqID,
-		tracer,
-	)
-
-	beego.Debug(err)
-	beego.Debug(string(resp.Header))
-	beego.Debug(string(resp.Body))
-}
-
-func TestComponentGRPCFailed(t *testing.T) {
-	reqID := helper.GenJobID()
-
-	var errorHeader structs.TypeGRPCError
-	header := structsRPC.TypeHeaderRPC{
-		ReqID:       reqID,
-		Date:        timetn.Now(),
-		ContentType: "application/json",
-		RoundTrip:   "",
-		Error:       errorHeader,
-	}
-	headerByte, _ := json.Marshal(header)
-
-	var tracer structsAPI.HeaderTracer
-	tracer.ParSpanID = "ParSpanID"
-	tracer.SpanID = "SpanID"
-	tracer.TraceID = "TraceID"
-	tracer.XReqID = "XReqID"
-
-	resp, err := rpc.SendGRPCComponentTest(
-		"/rpcFailed",
-		"127.0.0.1:58080",
-		[]byte(`
-			{"date":"2018-05-16","report_id":1}
-		`),
-		headerByte,
-		reqID,
-		tracer,
-	)
-
-	beego.Debug(err)
-	beego.Debug(string(resp.Header))
-	beego.Debug(string(resp.Body))
+	Convey("TestTemplate", t, func() {
+		Convey("Should Success", func() {
+			So(err, ShouldEqual, nil)
+			So(len(resHeader.Error.Error), ShouldEqual, 0)
+		})
+	})
 }

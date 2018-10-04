@@ -20,6 +20,8 @@ var (
 	AUTH    string
 	AUTHKEY string
 	AUTHEXP string
+
+	VERSION string
 )
 
 func init() {
@@ -44,4 +46,6 @@ func init() {
 	AUTH = os.Getenv("AUTH")
 	AUTHKEY = os.Getenv("AUTHKEY")
 	AUTHEXP = os.Getenv("AUTHEXP")
+
+	VERSION = os.Getenv("VERSION")
 }
