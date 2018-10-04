@@ -39,21 +39,21 @@ export PATH_BATCH_REVERSE_REDEMPTION=storages/batch/reverseredemption/
 export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
 
-cat $GOPATH/src/template/conf/ci/mq.json
-cat $GOPATH/src/template/conf/ci/mongodb.json
+# cat $GOPATH/src/template/conf/ci/mq.json
+# cat $GOPATH/src/template/conf/ci/mongodb.json
 
-cd $GOPATH/src/template && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
+# cd $GOPATH/src/template && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
 
 # Unit test 
-cd $WORKDIR &&
-go test -v --cover \
-./models/logic/cards/... \
--coverprofile=$WORKDIR/sonarqube-report/coverage-report.out
+# cd $WORKDIR &&
+# go test -v --cover \
+# ./models/logic/cards/... \
+# -coverprofile=$WORKDIR/sonarqube-report/coverage-report.out
 
-cd $WORKDIR &&
-go test -v --cover \
-./models/logic/cards/... \
--json > $WORKDIR/sonarqube-report/unit-report.json
+# cd $WORKDIR &&
+# go test -v --cover \
+# ./models/logic/cards/... \
+# -json > $WORKDIR/sonarqube-report/unit-report.json
 
 # # Component test
 # cd $GOPATH/src/template/routers/component && 
@@ -62,8 +62,8 @@ go test -v --cover \
 # ./clearingpoint/...
 
 # Run SonarQube
-cd $WORKDIR &&
-docker run --rm \
-    -v $(pwd):$WORKDIR \
-    -w=$WORKDIR --network=sonar \
-    nikhuber/sonar-scanner:latest sonar-scanner
+# cd $WORKDIR &&
+# docker run --rm \
+#     -v $(pwd):$WORKDIR \
+#     -w=$WORKDIR --network=sonar \
+#     nikhuber/sonar-scanner:latest sonar-scanner
