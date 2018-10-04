@@ -10,7 +10,6 @@ import (
 	"template/thirdparty/rpc"
 	"testing"
 
-	"github.com/astaxie/beego"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -52,8 +51,6 @@ func TestTemplate(t *testing.T) {
 
 	var resBody structsRPC.ResTest
 	json.Unmarshal(resp.Body, &resBody)
-	beego.Debug("resHeader => ", resHeader)
-	beego.Debug("resBody => ", resBody)
 
 	Convey("TestTemplate", t, func() {
 		Convey("Should Success", func() {
