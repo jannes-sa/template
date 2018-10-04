@@ -37,20 +37,22 @@ export PATH_BATCH_DEACTIVATE=storages/batch/deactivate/
 export PATH_BATCH_REVERSE_REDEMPTION=storages/batch/reverseredemption/
 export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
-cat $GOPATH/src/DLOR_Collect/conf/ci/mq.json
-cat $GOPATH/src/DLOR_Collect/conf/ci/mongodb.json
+export DOCKERWORKDIR=$GOPATH/src/template
 
-cd $GOPATH/src/DLOR_Collect && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
+cat $GOPATH/src/template/conf/ci/mq.json
+cat $GOPATH/src/template/conf/ci/mongodb.json
+
+cd $GOPATH/src/template && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
 
 # Unit test 
-cd $GOPATH/src/DLOR_Collect && 
+cd $GOPATH/src/template && 
 go test -v --cover \
 ./models/logic/... \
--json > $GOPATH/src/DLOR_Collect/cicd/sonarqube-report/unit-report.json \
--coverprofile=$GOPATH/src/DLOR_Collect/cicd/sonarqube-report/coverage-report.out
+-json > $GOPATH/src/template/cicd/sonarqube-report/unit-report.json \
+-coverprofile=$GOPATH/src/template/cicd/sonarqube-report/coverage-report.out
 
 # Component test
-cd $GOPATH/src/DLOR_Collect/routers/component && 
+cd $GOPATH/src/template/routers/component && 
 go test -v \
 ./accrue/... \
 ./interdomain/... \
@@ -59,7 +61,7 @@ go test -v \
 ./clearingpoint/...
 
 # Run SonarQube
-cd $GOPATH/src/DLOR_Collect &&
+cd $GOPATH/src/template &&
 docker run --rm \
     --mount type=bind,source="$(pwd)",target=$DOCKERWORKDIR \
     -w=$DOCKERWORKDIR --network=sonar \
