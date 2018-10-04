@@ -67,9 +67,3 @@ docker run --rm \
     -v $(pwd):$WORKDIR \
     -w=$WORKDIR --network=sonar \
     nikhuber/sonar-scanner:latest sonar-scanner
-
-
-# docker run --rm \
-#     -v $(pwd):/var/lib/jenkins/workspace/DLOR_Collect/src/template \
-#     -w=/var/lib/jenkins/workspace/DLOR_Collect/src/template --network=sonar \
-#     nikhuber/sonar-scanner:latest sonar-scanner
