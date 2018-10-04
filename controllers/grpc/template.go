@@ -8,8 +8,8 @@ import (
 	rpcStructs "template/structs/api/grpc"
 )
 
-// RPCTemplate - Controller RPC for testing only Success
-func RPCTemplate(
+// RPCtrlTemplate - RPCtrlTemplate Controllers
+func RPCtrlTemplate(
 	in *pb.DoReq,
 	errRPCCode *structs.TypeGRPCError,
 	body *[]byte,
@@ -22,7 +22,7 @@ func RPCTemplate(
 
 	err := json.Unmarshal(in.GetBody(), &req)
 	if err != nil {
-		helper.CheckErr("failed unmarshal @RPCTest", err)
+		helper.CheckErr("failed unmarshal @RPCtrlTemplate", err)
 		structs.ErrorCode.UnexpectedError.String(&errRPCCode.Error)
 		return
 	}
@@ -31,7 +31,7 @@ func RPCTemplate(
 	res.Res = "response"
 	resBy, err := json.Marshal(res)
 	if err != nil {
-		helper.CheckErr("failed marshal &GRPCTest", err)
+		helper.CheckErr("failed marshal &RPCtrlTemplate", err)
 		structs.ErrorCode.UnexpectedError.String(&errRPCCode.Error)
 		return
 	}
