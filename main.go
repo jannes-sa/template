@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"template/helper/constant"
 	"template/helper/timetn"
-	"template/models/db"
+	db "template/models/db/pgsql"
 	"template/routers/grpc"
 	_ "template/routers/http"
 	_ "template/structs/db"

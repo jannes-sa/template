@@ -1,16 +1,13 @@
 package helper
 
 import (
-	"bytes"
 	crand "crypto/rand"
 	"encoding/json"
 	"fmt"
 	"hash/crc32"
-	"io/ioutil"
 	"math"
 	"math/big"
 	"math/rand"
-	"net/http"
 	"os"
 	"regexp"
 	"strconv"
@@ -19,6 +16,7 @@ import (
 	"template/helper/timetn"
 	"template/structs"
 	structsRPC "template/structs/api/grpc"
+	logicStruct "template/structs/logic"
 	"time"
 
 	js "github.com/json-iterator/go"
@@ -54,106 +52,31 @@ func HeaderAll(c *context.Context) string {
 	}
 	strJSON, err := json.Marshal(headerAll)
 	if err != nil {
-		beego.Warning("error Marshal header request")
-		beego.Error(err)
+		CheckErr("error Marshal header request", err)
 	}
+
 	return string(strJSON)
 }
 
-// RestCircuitBreaker ...
-func RestCircuitBreaker(dt []byte, method string, url string,
-	headerAll string) (
-	response string, headerJobID string, headerFull string, errHTTP error) {
-	req, errNewReq := http.NewRequest(method, url, bytes.NewBuffer(dt))
-	CheckErr("error restful", errNewReq)
-	var reqHeaderStruct structs.ReqHTTPHeader
-	errUnmarshalHeader := json.Unmarshal([]byte(headerAll), &reqHeaderStruct)
-	if errUnmarshalHeader != nil {
-		beego.Debug(errUnmarshalHeader)
+// GetHeaderParseToStruct - GetHeaderParseToStruct
+func GetHeader(headerAll string) (header structs.ReqHTTPHeader) {
+	err := json.Unmarshal([]byte(headerAll), &header)
+	if err != nil {
+		CheckErr("failed unmarshal header", err)
 	}
-
-	headerByte, errByte := json.Marshal(reqHeaderStruct)
-	beego.Debug(string(headerByte))
-	CheckErr("177 RestCircuitBreaker", errByte)
-
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("x-request-id", reqHeaderStruct.XRequestID)
-	req.Header.Set("x-real-ip", reqHeaderStruct.XRealIP)
-	req.Header.Set("x-caller-service", reqHeaderStruct.XCallerService)
-	req.Header.Set("x-caller-domain", reqHeaderStruct.XCallerDomain)
-	req.Header.Set("x-device", reqHeaderStruct.XDevice)
-	req.Header.Set("X-job-id", reqHeaderStruct.XJobID)
-	req.Header.Set("domain-id", reqHeaderStruct.DomainID)
-
-	now := timetn.Now()
-	nowISO, errMarshalNow := json.Marshal(now)
-	CheckErr("RestCircuitBreaker 190", errMarshalNow)
-	nowISOString := strings.Replace(string(nowISO), `"`, ``, -1)
-	req.Header.Set("datetime", nowISOString)
-
-	client := &http.Client{
-	// Timeout: time.Duration(1 * time.Second),
-	}
-	ms := timetn.Now().UnixNano() / int64(time.Millisecond)
-	resp, err := client.Do(req)
-	CheckErr("error response restful", err)
-	errHTTP = err
-
-	var headerResp string
-	if err == nil {
-		bodydt, errRead := ioutil.ReadAll(resp.Body)
-		CheckErr("error response read", errRead)
-		response = string(bodydt)
-
-		headerJobID = putJobIDFromHeader(resp.Header)
-		headerResp = parseHeaderIntoString(resp.Header)
-		headerFull = headerResp
-	}
-
-	// Send Information to Log //
-	roundTrip := GetRoundTripInternal(ms)
-	beego.Debug(roundTrip)
 
 	return
 }
 
-func putJobIDFromHeader(header http.Header) string {
-	var jobID string
-	keyJobID := "X-Job-Id"
-	for k, v := range header {
-		if strings.ToLower(k) == strings.ToLower(keyJobID) {
-			jobID = v[0]
-			beego.Debug("putJobIDFromHeader => ", k, v[0])
-		}
-	}
+// ContextStruct - Fill data into this ContextStruct
+func ContextStruct(c *context.Context) (contextStruct logicStruct.ContextStruct) {
+	headerAll := HeaderAll(c)
+	header := GetHeader(headerAll)
+	jobID := GetJobID(c)
 
-	return jobID
-}
-
-func parseHeaderIntoString(header http.Header) string {
-	mp := make(map[string]string)
-	for nm, v := range header {
-		beego.Debug(nm)
-		mp[nm] = v[0]
-	}
-	strJSON, err := json.Marshal(mp)
-	if err != nil {
-		beego.Warning("error Marshal header helper line 222")
-		beego.Error(err)
-	}
-	return string(strJSON)
-}
-
-// Rest ...
-func Rest(dt []byte, method string,
-	url string) (resp *http.Response, err error) {
-	req, err := http.NewRequest(method, url, bytes.NewBuffer(dt))
-	CheckErr("error restful", err)
-	req.Header.Set("Content-Type", "application/json")
-
-	client := &http.Client{}
-	resp, err = client.Do(req)
+	contextStruct.HeaderAll = headerAll
+	contextStruct.Header = header
+	contextStruct.JobID = jobID
 
 	return
 }
@@ -332,10 +255,6 @@ func ConstructHTTPHeader(ctx *context.Context) structs.ResHTTPHeader {
 	return resHeader
 }
 
-// func round(num float64) int {
-// 	return int(num + math.Copysign(0.5, num))
-// }
-
 // ToFixedRoundDigits ...
 func ToFixedRoundDigits(num float64, precision int) float64 {
 	output := math.Pow(10, float64(precision))
@@ -368,18 +287,6 @@ func ContainsArray(slice []string, item string) bool {
 
 	_, ok := set[item]
 	return ok
-}
-
-// SetJobID ...
-func SetJobID(preJobID string, headerAllParam string) (headerAll string) {
-	var reqHeaderStruct structs.ReqHTTPHeader
-	errUnmarshalHeader := json.Unmarshal([]byte(headerAllParam), &reqHeaderStruct)
-	CheckErr("", errUnmarshalHeader)
-	reqHeaderStruct.XJobID = preJobID
-	strJSON, err := json.Marshal(reqHeaderStruct)
-	CheckErr("", err)
-	headerAll = string(strJSON)
-	return
 }
 
 // GenJobID Generate Job ID
@@ -467,12 +374,4 @@ func PathLogFile(pathfile string) string {
 	pathLog := pathfile + "/" + hostname + "_" + strTime + "_" +
 		constant.GOAPP + ".log"
 	return pathLog
-}
-
-// DebugElapsedTime : Debuging time Elapsed
-func DebugElapsedTime(msg string, tN time.Time) {
-	beego.Debug("#############################################################",
-		strings.ToUpper(msg),
-		msg, "==>>", time.Since(tN),
-		"#############################################################")
 }

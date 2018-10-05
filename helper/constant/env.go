@@ -25,14 +25,7 @@ var (
 )
 
 func init() {
-	if os.Getenv("GOENV") == "" || strings.ToLower(os.Getenv("GOENV")) == LOCAL {
-		errEnv := godotenv.Load(
-			os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
-				"/conf/env")
-		if errEnv != nil {
-			beego.Critical("fatal load env", errEnv)
-		}
-	}
+	LoadEnv()
 
 	GOPATH = os.Getenv("GOPATH")
 	GOAPP = os.Getenv("GOAPP")
@@ -48,4 +41,16 @@ func init() {
 	AUTHEXP = os.Getenv("AUTHEXP")
 
 	VERSION = os.Getenv("VERSION")
+}
+
+// LoadEnv - LoadEnv
+func LoadEnv() {
+	if os.Getenv("GOENV") == DEVCI || strings.ToLower(os.Getenv("GOENV")) == LOCAL {
+		errEnv := godotenv.Load(
+			os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
+				"/conf/env")
+		if errEnv != nil {
+			beego.Critical("fatal load env", errEnv)
+		}
+	}
 }

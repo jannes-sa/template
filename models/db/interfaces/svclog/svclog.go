@@ -9,9 +9,9 @@ import (
 // ISvcLog - svcLog Logic Interface
 type ISvcLog interface {
 	GetAllServiceLog() ([]dbStruct.ServiceLog, error)
-	GetOneServiceLog(cond string) (dbStruct.ServiceLog, error)
+	GetOneByJobIDServiceLog(dbStruct.ServiceLog) (dbStruct.ServiceLog, error)
 	InsertServiceLog(orm.Ormer, interface{}) (int64, error)
-	UpdateServiceLog(orm.Ormer, []string, string) error
-	UpdateReturnServiceLog(orm.Ormer, []string, string, []string) ([]dbStruct.ServiceLog, error)
-	DeleteServiceLog(orm.Ormer, string) error
+	UpdateByJobIDServiceLog(orm.Ormer, dbStruct.ServiceLog) error
+	UpdateReturnByJobIDServiceLog(orm.Ormer, dbStruct.ServiceLog) ([]dbStruct.ServiceLog, error)
+	DeleteByJobIDServiceLog(orm.Ormer, dbStruct.ServiceLog) error
 }
