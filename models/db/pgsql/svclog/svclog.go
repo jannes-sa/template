@@ -18,27 +18,14 @@ var tblServiceLog = tablename.ServiceLog
 // GetAllServiceLog - GetAllServiceLog GetAll
 func (d *SvcLog) GetAllServiceLog() (rows []dbStruct.ServiceLog, err error) {
 	o := orm.NewOrm()
-
-	q := []string{
-		"select * from",
-		tblServiceLog,
-	}
-	sql := strings.Join(q, " ")
-	_, err = o.Raw(sql).QueryRows(&rows)
+	_, err = o.QueryTable(tblServiceLog).All(&rows)
 	return
 }
 
 // GetOneByJobIDServiceLog - GetOneByJobIDServiceLog GetOne
 func (d *SvcLog) GetOneByJobIDServiceLog(r dbStruct.ServiceLog) (row dbStruct.ServiceLog, err error) {
 	o := orm.NewOrm()
-
-	q := []string{
-		"select * from", tblServiceLog,
-		"where job_id = ?",
-	}
-	sql := strings.Join(q, " ")
-	err = o.Raw(sql, r.JobID).QueryRow(&row)
-
+	err = o.QueryTable(tblServiceLog).Filter("job_id", r.JobID).One(&row)
 	return
 }
 
@@ -60,14 +47,9 @@ func (d *SvcLog) UpdateByJobIDServiceLog(
 	row dbStruct.ServiceLog,
 ) (err error) {
 
-	q := []string{
-		"UPDATE", tblServiceLog,
-		"SET req = ?",
-		"WHERE job_id = ?",
-	}
-
-	sql := strings.Join(q, " ")
-	_, err = o.Raw(sql, row.Req, row.JobID).Exec()
+	_, err = o.QueryTable(tblServiceLog).Filter("job_id", row.JobID).Update(orm.Params{
+		"req": row.Req,
+	})
 
 	return
 }
@@ -94,12 +76,6 @@ func (d *SvcLog) DeleteByJobIDServiceLog(
 	o orm.Ormer,
 	row dbStruct.ServiceLog,
 ) (err error) {
-	q := []string{
-		"DELETE FROM", tblServiceLog,
-		"WHERE job_id = ?",
-	}
-	sql := strings.Join(q, " ")
-	_, err = o.Raw(sql, row.JobID).Exec()
-
+	_, err = o.QueryTable(tblServiceLog).Filter("job_id", row.JobID).Delete()
 	return
 }

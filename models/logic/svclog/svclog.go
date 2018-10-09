@@ -5,7 +5,7 @@ import (
 	dbBase "template/models/db/pgsql"
 	"template/structs"
 	dbStruct "template/structs/db"
-	logicStruct "template/structs/logic"
+	lStruct "template/structs/logic"
 )
 
 // GetAllServiceLog - GetAllServiceLog
@@ -20,7 +20,7 @@ func GetAllServiceLog(errCode *[]structs.TypeError) (rows []dbStruct.ServiceLog)
 
 // GetOneByJobIDServiceLog - GetOneByJobIDServiceLog
 func GetOneByJobIDServiceLog(
-	contextStruct logicStruct.ContextStruct,
+	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) (row dbStruct.ServiceLog) {
 	row.JobID = contextStruct.JobID
@@ -35,7 +35,7 @@ func GetOneByJobIDServiceLog(
 
 // InsertServiceLog - InsertServiceLog
 func InsertServiceLog(
-	contextStruct logicStruct.ContextStruct,
+	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) {
 	var (
@@ -77,7 +77,7 @@ func InsertServiceLog(
 
 // UpdateByJobIDServiceLog - UpdateByJobIDServiceLog
 func UpdateByJobIDServiceLog(
-	contextStruct logicStruct.ContextStruct,
+	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) {
 	var (
@@ -115,7 +115,7 @@ func UpdateByJobIDServiceLog(
 
 // UpdateReturnByJobIDServiceLog - UpdateReturnByJobIDServiceLog
 func UpdateReturnByJobIDServiceLog(
-	contextStruct logicStruct.ContextStruct,
+	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) (rows []dbStruct.ServiceLog) {
 	var (
@@ -155,7 +155,7 @@ func UpdateReturnByJobIDServiceLog(
 
 // DeleteByJobIDServiceLog - DeleteByJobIDServiceLog
 func DeleteByJobIDServiceLog(
-	contextStruct logicStruct.ContextStruct,
+	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) {
 	var (
