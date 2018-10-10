@@ -7,15 +7,6 @@ FROM golang:1.9.2-alpine
 	
 ### END: Setting Environment ###
 
-### START: Set Date Time ###
-
-	RUN ln -sf /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
-	RUN echo "Asia/Bangkok" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
-	ENV TZ=Asia/Bangkok
-	RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-### END Set Date Time ###
-
 ### START: add source ###
 
 	RUN mkdir -p /go/src/template
