@@ -3,6 +3,7 @@ CRED_PGSQL=postgres://postgres:root@127.0.0.1:5432/template?sslmode=disable
 AUTH=0
 AUTHKEY=AUTHKEYDATA
 AUTHEXP=60
+TZ=Asia/Bangkok
 
 DBMAXCONN = 50
 DBMAXIDLE = 50

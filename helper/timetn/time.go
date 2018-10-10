@@ -2,6 +2,7 @@ package timetn
 
 import (
 	"strconv"
+	"template/helper/constant"
 	"time"
 
 	"github.com/astaxie/beego"
@@ -11,7 +12,15 @@ var addedTimeNow = 0
 
 // Now replace helper.Now()
 func Now() time.Time {
-	return time.Now().AddDate(0, 0, addedTimeNow)
+	if constant.TZ == "" {
+		constant.TZ = "Asia/Bangkok"
+	}
+	loc, err := time.LoadLocation(constant.TZ)
+	if err != nil {
+		beego.Warning("failed load location", err)
+	}
+
+	return time.Now().AddDate(0, 0, addedTimeNow).In(loc)
 }
 
 // NowLoc - Time Now With Spesific Location Timezone
