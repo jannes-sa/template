@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"path/filepath"
 	"strconv"
-	"template/models/db"
+	db "template/models/db/pgsql"
 	ctrlRPC "template/routers/grpc"
 	routerHTTP "template/routers/http"
 	"template/structs"
