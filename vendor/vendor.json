@@ -193,6 +193,10 @@
 			"revisionTime": "2017-11-14T11:24:18Z"
 		},
 		{
+			"path": "github.com/jinzhu/gorm",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "6tugndU74PfNoCMa1PUG9pqn8Ds=",
 			"path": "github.com/johnnadratowski/golang-neo4j-bolt-driver",
 			"revision": "ac2ebaae89cb7cbb628eb5940473a97377dd8845",
