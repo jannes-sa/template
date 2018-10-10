@@ -3,7 +3,13 @@ FROM golang:1.9.2-alpine
 ### START: Setting Environment ###
 
 	ENV GOPATH /go
+	ENV GOAPP template
+	ENV GOENV kube
 	ENV PATH $GOPATH/bin:$PATH
+	ADD conf/bin $GOPATH/bin
+
+	RUN apk add --no-cache \
+        libc6-compat
 	
 ### END: Setting Environment ###
 
@@ -12,9 +18,16 @@ FROM golang:1.9.2-alpine
 	RUN mkdir -p /go/src/template
 	RUN mkdir -p /go/src/template/logs
 
-	ADD conf /go/src/template
-	ADD storages /go/src/template
-	ADD database /go/src/template
+	RUN mkdir -p /go/src/template/conf	
+	ADD conf /go/src/template/conf
+
+	RUN mkdir -p /go/src/template/storages
+	ADD storages /go/src/template/storages
+	
+	RUN mkdir -p /go/src/template/database
+	ADD database /go/src/template/database
+	
+	ADD template /go/src/template
 
 ### END: add source ###
 
@@ -25,11 +38,5 @@ FROM golang:1.9.2-alpine
 	WORKDIR /go/src/template
 
 ### END: Initialize dependency ###
-
-### START: Build Package ###
-	RUN go build
-	# RUN /go/src/template/runtime
-
-### END: Build Package ###
 
 CMD ["/go/src/template/template"]
