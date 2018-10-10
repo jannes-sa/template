@@ -77,6 +77,7 @@ func ContextStruct(c *context.Context) (contextStruct logicStruct.ContextStruct)
 	contextStruct.HeaderAll = headerAll
 	contextStruct.Header = header
 	contextStruct.JobID = jobID
+	contextStruct.HeaderTracer.HTTPGetHeaderTrace(c)
 
 	return
 }
