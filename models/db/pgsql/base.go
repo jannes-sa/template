@@ -5,6 +5,8 @@ import (
 	"template/helper"
 	"template/helper/constant"
 
+	"github.com/astaxie/beego"
+
 	"github.com/astaxie/beego/orm"
 )
 
@@ -31,10 +33,18 @@ func RegisterPGSQL() {
 
 	errRegisterDriver := orm.RegisterDriver("postgres", orm.DRPostgres)
 	helper.CheckErr("errRegisterDriver@Register", errRegisterDriver)
+	if errRegisterDriver != nil {
+		beego.Critical(errRegisterDriver)
+		panic(1)
+	}
 
 	errRegisterDataBase := orm.RegisterDataBase("default", "postgres",
 		constant.CREDPGSQL, maxIdle, maxConn)
 	helper.CheckErr("errRegisterDataBase@Register", errRegisterDataBase)
+	if errRegisterDataBase != nil {
+		beego.Critical(errRegisterDataBase)
+		panic(1)
+	}
 
 	RegisterModelPgSQL()
 }
