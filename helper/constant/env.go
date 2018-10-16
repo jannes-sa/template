@@ -13,6 +13,7 @@ var (
 	GOAPP     string
 	GOENV     string
 	CREDPGSQL string
+	CREDMONGO string
 
 	DBMAXCONN string
 	DBMAXIDLE string
@@ -33,6 +34,7 @@ func init() {
 	GOENV = os.Getenv("GOENV")
 
 	CREDPGSQL = os.Getenv("CRED_PGSQL")
+	CREDMONGO = os.Getenv("CRED_MONGO")
 
 	DBMAXCONN = os.Getenv("DBMAXCONN")
 	DBMAXIDLE = os.Getenv("DBMAXIDLE")
