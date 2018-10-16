@@ -1,5 +1,6 @@
 GOENV=local
 CRED_PGSQL=postgres://postgres:root@127.0.0.1:5432/template?sslmode=disable
+CRED_MONGO=mongodb://172.17.0.1:27017
 AUTH=0
 AUTHKEY=AUTHKEYDATA
 AUTHEXP=60
