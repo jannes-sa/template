@@ -10,6 +10,10 @@ import (
 
 var addedTimeNow = 0
 
+const (
+	failedLoadLocMsg = "failed load location"
+)
+
 // Now replace helper.Now()
 func Now() time.Time {
 	if constant.TZ == "" {
@@ -17,7 +21,7 @@ func Now() time.Time {
 	}
 	loc, err := time.LoadLocation(constant.TZ)
 	if err != nil {
-		beego.Warning("failed load location", err)
+		beego.Warning(failedLoadLocMsg, err)
 	}
 
 	return time.Now().AddDate(0, 0, addedTimeNow).In(loc)
@@ -31,7 +35,7 @@ func NowLoc(timeLoc string) (
 	// "Asia/Bangkok"
 	loc, err := time.LoadLocation(timeLoc)
 	if err != nil {
-		beego.Warning("failed load location", err)
+		beego.Warning(failedLoadLocMsg, err)
 	}
 	dateTime = Now().In(loc)
 	return
@@ -70,7 +74,7 @@ func ParseTimeLoc(
 	// Asia/Bangkok
 	loc, err := time.LoadLocation(timeLoc)
 	if err != nil {
-		beego.Warning("failed load location", err)
+		beego.Warning(failedLoadLocMsg, err)
 		return
 	}
 	dateTime, err := time.Parse(layout, valueTime)

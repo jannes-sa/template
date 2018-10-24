@@ -96,32 +96,15 @@ type (
 
 // ValidateReqHeader ...
 func (st *JSONHeader) ValidateReqHeader() error {
-	validate := validator.New()
-	err := validate.Struct(st)
-	if err != nil {
-		if _, ok := err.(*validator.InvalidValidationError); ok {
-			beego.Warning(err)
-		}
-
-		for _, err := range err.(validator.ValidationErrors) {
-			beego.Warning(err.Namespace())
-			beego.Warning(err.Field())
-			beego.Warning(err.StructNamespace())
-			beego.Warning(err.StructField())
-			beego.Warning(err.Tag())
-			beego.Warning(err.ActualTag())
-			beego.Warning(err.Kind())
-			beego.Warning(err.Type())
-			beego.Warning(err.Value())
-			beego.Warning(err.Param())
-		}
-
-	}
-	return err
+	return validateHeader(st)
 }
 
 // ValidateReqHTTPHeader ...
 func (st *ReqHTTPHeader) ValidateReqHTTPHeader() error {
+	return validateHeader(st)
+}
+
+func validateHeader(st interface{}) error {
 	validate := validator.New()
 	err := validate.Struct(st)
 	if err != nil {

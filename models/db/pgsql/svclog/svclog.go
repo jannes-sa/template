@@ -25,7 +25,7 @@ func (d *SvcLog) GetAllServiceLog() (rows []dbStruct.ServiceLog, err error) {
 // GetOneByJobIDServiceLog - GetOneByJobIDServiceLog GetOne
 func (d *SvcLog) GetOneByJobIDServiceLog(r dbStruct.ServiceLog) (row dbStruct.ServiceLog, err error) {
 	o := orm.NewOrm()
-	err = o.QueryTable(tblServiceLog).Filter("job_id", r.JobID).One(&row)
+	err = o.QueryTable(tblServiceLog).Filter(constant.JobIDStr, r.JobID).One(&row)
 	return
 }
 
@@ -47,7 +47,7 @@ func (d *SvcLog) UpdateByJobIDServiceLog(
 	row dbStruct.ServiceLog,
 ) (err error) {
 
-	_, err = o.QueryTable(tblServiceLog).Filter("job_id", row.JobID).Update(orm.Params{
+	_, err = o.QueryTable(tblServiceLog).Filter(constant.JobIDStr, row.JobID).Update(orm.Params{
 		"req": row.Req,
 	})
 
@@ -76,6 +76,6 @@ func (d *SvcLog) DeleteByJobIDServiceLog(
 	o orm.Ormer,
 	row dbStruct.ServiceLog,
 ) (err error) {
-	_, err = o.QueryTable(tblServiceLog).Filter("job_id", row.JobID).Delete()
+	_, err = o.QueryTable(tblServiceLog).Filter(constant.JobIDStr, row.JobID).Delete()
 	return
 }

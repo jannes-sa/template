@@ -1,6 +1,7 @@
 #!/bin/bash
-export GOPATH=/var/lib/jenkins/workspace/DLOR_Collect
-# export GOPATH=/home/tnis/works/TN/dlor
+# export GOPATH=/var/lib/jenkins/workspace/template
+# export GOPATH=/home/tnis/works/TN/template
+export GOPATH=/home/mcdohl/tnwork/template
 export WORKDIR=$GOPATH/src/template
 
 export GOENV=devci
@@ -44,16 +45,15 @@ export PATH_BATCH_CLEARING_POINT=storages/batch/clearingpoint/
 
 # cd $GOPATH/src/template && $GOPATH/bin/bee migrate -driver=postgres -conn="postgres://postgres:root@172.17.0.1:5432/postgres?sslmode=disable"
 
-# Unit test 
-# cd $WORKDIR &&
-# go test -v --cover \
-# ./models/logic/cards/... \
-# -coverprofile=$WORKDIR/sonarqube-report/coverage-report.out
+# Coverage
+go test -v --cover \
+./models/logic/svclog/... \
+-coverprofile=$WORKDIR/cicd/sonarqube-report/coverage-report.out
 
-# cd $WORKDIR &&
-# go test -v --cover \
-# ./models/logic/cards/... \
-# -json > $WORKDIR/sonarqube-report/unit-report.json
+# Unit Test
+go test -v --cover \
+./models/logic/svclog/... \
+-json >> $WORKDIR/cicd/sonarqube-report/unit-report.json
 
 # # Component test
 # cd $GOPATH/src/template/routers/component && 

@@ -7,6 +7,10 @@ import (
 	c "template/helper/constant"
 )
 
+const (
+	fieldCall = `{field}`
+)
+
 var strs = make(map[reflect.Type]map[int]map[string]string)
 
 func register(t reflect.Type, v int, s map[string]string) {
@@ -92,7 +96,7 @@ func filterMissingField(val string, errCode *[]TypeError) {
 		codes, cases, msgs := ErrorCode.MissingField.GetString()
 
 		arrMisField := strings.Split(val, `|`)
-		msgs = strings.Replace(msgs, `{field}`, arrMisField[1], -1)
+		msgs = strings.Replace(msgs, fieldCall, arrMisField[1], -1)
 		*errCode = append(*errCode, TypeError{
 			Code:    codes,
 			Case:    cases,
@@ -110,21 +114,21 @@ func filterMismatchType(val string, errCode *[]TypeError) {
 		if strings.Contains(val, "mismatch_type") {
 			arrType := strings.Split(val, `|`)
 			if arrType[1] == "string" {
-				msgFilter := strings.Replace(msgsStr, `{field}`, arrType[2], -1)
+				msgFilter := strings.Replace(msgsStr, fieldCall, arrType[2], -1)
 				*errCode = append(*errCode, TypeError{
 					Code:    codeStr,
 					Case:    casesStr,
 					Message: msgFilter,
 				})
 			} else if arrType[1] == "int" || arrType[1] == "int64" || arrType[1] == "float64" {
-				msgFilter := strings.Replace(msgsNum, `{field}`, arrType[2], -1)
+				msgFilter := strings.Replace(msgsNum, fieldCall, arrType[2], -1)
 				*errCode = append(*errCode, TypeError{
 					Code:    codeNum,
 					Case:    casesNum,
 					Message: msgFilter,
 				})
 			} else if arrType[1] == "time" {
-				msgFilter := strings.Replace(msgsTim, `{field}`, arrType[2], -1)
+				msgFilter := strings.Replace(msgsTim, fieldCall, arrType[2], -1)
 				*errCode = append(*errCode, TypeError{
 					Code:    codeTim,
 					Case:    casesTim,

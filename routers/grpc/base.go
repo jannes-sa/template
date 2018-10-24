@@ -126,10 +126,8 @@ func CreateGrpcServer(portTemp string, customValidate ...string) {
 		helper.CheckErr("Error Connect gRPC to Serve()", errGrpc)
 	}()
 
-	if len(customValidate) > 0 {
-		if customValidate[0] == "test" {
-			return
-		}
+	if len(customValidate) > 0 && customValidate[0] == "test" {
+		return
 	}
 
 	shutdown := make(chan os.Signal)

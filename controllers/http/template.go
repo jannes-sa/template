@@ -96,7 +96,7 @@ func (c *TemplateController) GetOne() {
 // @Failure 403
 // @router / [get]
 func (c *TemplateController) GetAll() {
-
+	return
 }
 
 // Put ...
@@ -108,7 +108,7 @@ func (c *TemplateController) GetAll() {
 // @Failure 403 :id is not int
 // @router /:id [put]
 func (c *TemplateController) Put() {
-
+	return
 }
 
 // Delete ...
@@ -119,5 +119,5 @@ func (c *TemplateController) Put() {
 // @Failure 403 id is empty
 // @router /:id [delete]
 func (c *TemplateController) Delete() {
-
+	return
 }

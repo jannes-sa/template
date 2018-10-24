@@ -83,6 +83,7 @@ func (m *Middleware) authToken(c *context.Context) {
 	errCode := make([]structs.TypeError, 0)
 	tokenString := c.Input.Header("token")
 	_, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		beego.Debug(token)
 		return []byte(`jwtkey`), nil
 	})
 
@@ -160,11 +161,13 @@ func BeforeFunc(c *context.Context) {
 
 // AfterFunc to execute progress after response
 func AfterFunc(c *context.Context) {
-
+	beego.Debug(c)
+	return
 }
 
 // pageNotFound ..
 func pageNotFound(rw http.ResponseWriter, r *http.Request) {
+	beego.Debug(r)
 	_, err := rw.Write([]byte(""))
 	if err != nil {
 		beego.Warning("NOT FOUND ERROR")

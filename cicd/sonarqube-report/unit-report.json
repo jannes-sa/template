@@ -1,106 +1,156 @@
-{"Time":"2018-10-03T21:18:38.482183154+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestNewDeck"}
-{"Time":"2018-10-03T21:18:38.482287679+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeck","Output":"=== RUN   TestNewDeck\n"}
-{"Time":"2018-10-03T21:18:38.482298086+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeck","Output":"--- PASS: TestNewDeck (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482304058+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestNewDeck","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482310978+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestSaveToDeckAndNewDeckFromFile"}
-{"Time":"2018-10-03T21:18:38.482315819+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckAndNewDeckFromFile","Output":"=== RUN   TestSaveToDeckAndNewDeckFromFile\n"}
-{"Time":"2018-10-03T21:18:38.482320286+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckAndNewDeckFromFile","Output":"error os remove remove _decktesting: no such file or directory\n"}
-{"Time":"2018-10-03T21:18:38.48232514+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckAndNewDeckFromFile","Output":"--- PASS: TestSaveToDeckAndNewDeckFromFile (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482329963+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestSaveToDeckAndNewDeckFromFile","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.48233409+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestDummy"}
-{"Time":"2018-10-03T21:18:38.482338404+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"=== RUN   TestDummy\n"}
-{"Time":"2018-10-03T21:18:38.482342669+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482349921+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"  Given some integer with a starting value \n"}
-{"Time":"2018-10-03T21:18:38.482354007+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"    When the integer is incremented \n"}
-{"Time":"2018-10-03T21:18:38.482358108+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"      The value should be greater by one \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482362693+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482366734+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
-{"Time":"2018-10-03T21:18:38.482371121+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"1 total assertion\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482375508+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482379974+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDummy","Output":"--- PASS: TestDummy (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482385745+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestDummy","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482389599+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestNewDeckCard"}
-{"Time":"2018-10-03T21:18:38.482393201+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"=== RUN   TestNewDeckCard\n"}
-{"Time":"2018-10-03T21:18:38.482397644+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482401822+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"  Given a fresh deck \n"}
-{"Time":"2018-10-03T21:18:38.482405906+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"    Expected deck length of 16 \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482415918+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"    Expected first card Ace of Spades \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482420576+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"    Expected last card Four of Clubs \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482424706+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482428665+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
-{"Time":"2018-10-03T21:18:38.48243286+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"4 total assertions\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482437525+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.48244208+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Output":"--- PASS: TestNewDeckCard (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482446977+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestNewDeckCard","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482451317+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestNewDeckPrint"}
-{"Time":"2018-10-03T21:18:38.482456709+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"=== RUN   TestNewDeckPrint\n"}
-{"Time":"2018-10-03T21:18:38.482461308+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"0 Ace of Spades\n"}
-{"Time":"2018-10-03T21:18:38.482467065+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"1 Two of Spades\n"}
-{"Time":"2018-10-03T21:18:38.482471238+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"2 Three of Spades\n"}
-{"Time":"2018-10-03T21:18:38.482475528+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"3 Four of Spades\n"}
-{"Time":"2018-10-03T21:18:38.482479523+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"4 Ace of Diamonds\n"}
-{"Time":"2018-10-03T21:18:38.482483418+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"5 Two of Diamonds\n"}
-{"Time":"2018-10-03T21:18:38.482487259+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"6 Three of Diamonds\n"}
-{"Time":"2018-10-03T21:18:38.482491229+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"7 Four of Diamonds\n"}
-{"Time":"2018-10-03T21:18:38.482495391+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"8 Ace of Hearts\n"}
-{"Time":"2018-10-03T21:18:38.48249975+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"9 Two of Hearts\n"}
-{"Time":"2018-10-03T21:18:38.482503877+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"10 Three of Hearts\n"}
-{"Time":"2018-10-03T21:18:38.48250781+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"11 Four of Hearts\n"}
-{"Time":"2018-10-03T21:18:38.482511876+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"12 Ace of Clubs\n"}
-{"Time":"2018-10-03T21:18:38.482515753+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"13 Two of Clubs\n"}
-{"Time":"2018-10-03T21:18:38.482519741+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"14 Three of Clubs\n"}
-{"Time":"2018-10-03T21:18:38.482528289+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"15 Four of Clubs\n"}
-{"Time":"2018-10-03T21:18:38.48253521+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482539625+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"  Given all deck print \n"}
-{"Time":"2018-10-03T21:18:38.482543622+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"    Expected deck length of 16 \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482549449+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482553532+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
-{"Time":"2018-10-03T21:18:38.482557781+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"5 total assertions\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482561833+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482566315+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Output":"--- PASS: TestNewDeckPrint (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482570769+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestNewDeckPrint","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482574859+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestDealCard"}
-{"Time":"2018-10-03T21:18:38.48257842+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"=== RUN   TestDealCard\n"}
-{"Time":"2018-10-03T21:18:38.482582509+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482586435+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"  Given deal card \n"}
-{"Time":"2018-10-03T21:18:38.482590379+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"    Expected hand cards length of 5 \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482594424+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"    Expected hand first card Ace of Spades \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482599981+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"    Expected hand last card Ace of Diamonds \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482604194+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"    Expected remaining cards length of 11 \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482608218+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"    Expected remaining first card Two of Diamonds \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482612645+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"    Expected remaining last card Four of Clubs \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482616624+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482620527+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
-{"Time":"2018-10-03T21:18:38.482624652+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"11 total assertions\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482628676+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482635251+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestDealCard","Output":"--- PASS: TestDealCard (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482639553+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestDealCard","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482643732+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle"}
-{"Time":"2018-10-03T21:18:38.48264735+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"=== RUN   TestNewDeckShuffle\n"}
-{"Time":"2018-10-03T21:18:38.48265182+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482656198+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"  Expected shuffle card \n"}
-{"Time":"2018-10-03T21:18:38.482661839+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"    Expected deck length of 16 \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482665931+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"    Expected found card Ace of Spades \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482669929+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482673809+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
-{"Time":"2018-10-03T21:18:38.482677868+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"13 total assertions\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482681902+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482686247+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Output":"--- PASS: TestNewDeckShuffle (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.482690451+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestNewDeckShuffle","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482694311+07:00","Action":"run","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile"}
-{"Time":"2018-10-03T21:18:38.482698+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"=== RUN   TestSaveToDeckNewDeckFromFile\n"}
-{"Time":"2018-10-03T21:18:38.482702498+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"error os remove remove _decktesting: no such file or directory\n"}
-{"Time":"2018-10-03T21:18:38.482706546+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482710415+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"  Testing save to file \n"}
-{"Time":"2018-10-03T21:18:38.482714562+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"    Expected deck length of 16 \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.48271905+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"    Expected no error \u001b[32m✔\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482723062+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482726844+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
-{"Time":"2018-10-03T21:18:38.482732753+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"15 total assertions\u001b[0m\n"}
-{"Time":"2018-10-03T21:18:38.482738838+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"\n"}
-{"Time":"2018-10-03T21:18:38.482743909+07:00","Action":"output","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Output":"--- PASS: TestSaveToDeckNewDeckFromFile (0.00s)\n"}
-{"Time":"2018-10-03T21:18:38.48274789+07:00","Action":"pass","Package":"template/models/logic/cards","Test":"TestSaveToDeckNewDeckFromFile","Elapsed":0}
-{"Time":"2018-10-03T21:18:38.482751847+07:00","Action":"output","Package":"template/models/logic/cards","Output":"PASS\n"}
-{"Time":"2018-10-03T21:18:38.482755535+07:00","Action":"output","Package":"template/models/logic/cards","Output":"coverage: 51.1% of statements\n"}
-{"Time":"2018-10-03T21:18:38.482759475+07:00","Action":"output","Package":"template/models/logic/cards","Output":"ok  \ttemplate/models/logic/cards\t(cached)\tcoverage: 51.1% of statements\n"}
-{"Time":"2018-10-03T21:18:38.482764871+07:00","Action":"pass","Package":"template/models/logic/cards","Elapsed":0.001}
+{"Time":"2018-10-24T12:32:59.630853687+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog"}
+{"Time":"2018-10-24T12:32:59.630980097+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"=== RUN   TestInsertServiceLog\n"}
+{"Time":"2018-10-24T12:32:59.630987852+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T12:32:59.630992715+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.1ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T12:32:59.630997001+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631001666+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"  TestInsertServiceLog \n"}
+{"Time":"2018-10-24T12:32:59.631005532+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631009684+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631013434+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T12:32:59.631017993+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"1 total assertion\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631023701+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631029706+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"--- PASS: TestInsertServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T12:32:59.631034117+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Elapsed":0}
+{"Time":"2018-10-24T12:32:59.631039108+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog"}
+{"Time":"2018-10-24T12:32:59.631042576+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"=== RUN   TestGetAllServiceLog\n"}
+{"Time":"2018-10-24T12:32:59.631046353+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631050116+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"  TestGetAllServiceLog \n"}
+{"Time":"2018-10-24T12:32:59.63105383+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.6310578+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631061507+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T12:32:59.631065339+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"3 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631069492+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631073866+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"--- PASS: TestGetAllServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T12:32:59.631077931+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Elapsed":0}
+{"Time":"2018-10-24T12:32:59.631084706+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog"}
+{"Time":"2018-10-24T12:32:59.631088563+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"=== RUN   TestGetOneByJobIDServiceLog\n"}
+{"Time":"2018-10-24T12:32:59.631092354+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631096342+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"  TestGetOneByJobIDServiceLog \n"}
+{"Time":"2018-10-24T12:32:59.631100216+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631104013+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631107676+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T12:32:59.631111487+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"5 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.63111516+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631119439+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"--- PASS: TestGetOneByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T12:32:59.631123484+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T12:32:59.63112707+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog"}
+{"Time":"2018-10-24T12:32:59.631130492+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"=== RUN   TestUpdateByJobIDServiceLog\n"}
+{"Time":"2018-10-24T12:32:59.631134432+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T12:32:59.631138513+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.0ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T12:32:59.631142397+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631146098+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"  TestUpdateByJobIDServiceLog \n"}
+{"Time":"2018-10-24T12:32:59.631149943+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631153717+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631158142+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T12:32:59.631163173+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"6 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631169597+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631178945+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"--- PASS: TestUpdateByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T12:32:59.631183741+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T12:32:59.631187651+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog"}
+{"Time":"2018-10-24T12:32:59.631191507+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"=== RUN   TestUpdateReturnByJobIDServiceLog\n"}
+{"Time":"2018-10-24T12:32:59.631197398+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T12:32:59.631202582+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.1ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T12:32:59.631206993+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631210861+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"  TestUpdateReturnByJobIDServiceLog \n"}
+{"Time":"2018-10-24T12:32:59.631214675+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631218653+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631222468+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T12:32:59.631226553+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"8 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631230355+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631234437+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"--- PASS: TestUpdateReturnByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T12:32:59.631238593+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T12:32:59.63124216+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog"}
+{"Time":"2018-10-24T12:32:59.631245541+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"=== RUN   TestDeleteByJobIDServiceLog\n"}
+{"Time":"2018-10-24T12:32:59.631249549+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T12:32:59.631253354+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.1ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T12:32:59.631257037+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631260638+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"  TestDeleteByJobIDServiceLog \n"}
+{"Time":"2018-10-24T12:32:59.631267023+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631270996+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631274705+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T12:32:59.631278566+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"9 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T12:32:59.631282312+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T12:32:59.631287088+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"--- PASS: TestDeleteByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T12:32:59.631290781+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T12:32:59.631294742+07:00","Action":"output","Package":"template/models/logic/svclog","Output":"PASS\n"}
+{"Time":"2018-10-24T12:32:59.631298911+07:00","Action":"output","Package":"template/models/logic/svclog","Output":"coverage: 54.7% of statements\n"}
+{"Time":"2018-10-24T12:32:59.63130297+07:00","Action":"output","Package":"template/models/logic/svclog","Output":"ok  \ttemplate/models/logic/svclog\t(cached)\tcoverage: 54.7% of statements\n"}
+{"Time":"2018-10-24T12:32:59.63130887+07:00","Action":"pass","Package":"template/models/logic/svclog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376216619+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog"}
+{"Time":"2018-10-24T13:52:43.376312996+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"=== RUN   TestInsertServiceLog\n"}
+{"Time":"2018-10-24T13:52:43.376320533+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T13:52:43.37632565+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.1ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T13:52:43.376330421+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376334959+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"  TestInsertServiceLog \n"}
+{"Time":"2018-10-24T13:52:43.376339574+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376344217+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376348462+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T13:52:43.376353341+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"1 total assertion\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376358598+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.37636471+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Output":"--- PASS: TestInsertServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T13:52:43.376369343+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestInsertServiceLog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376378017+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog"}
+{"Time":"2018-10-24T13:52:43.376381761+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"=== RUN   TestGetAllServiceLog\n"}
+{"Time":"2018-10-24T13:52:43.376385589+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376389287+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"  TestGetAllServiceLog \n"}
+{"Time":"2018-10-24T13:52:43.376392957+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376396806+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376400411+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T13:52:43.376404148+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"3 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376408224+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376412547+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Output":"--- PASS: TestGetAllServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T13:52:43.376416686+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestGetAllServiceLog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376420181+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog"}
+{"Time":"2018-10-24T13:52:43.376423569+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"=== RUN   TestGetOneByJobIDServiceLog\n"}
+{"Time":"2018-10-24T13:52:43.376427975+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376431851+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"  TestGetOneByJobIDServiceLog \n"}
+{"Time":"2018-10-24T13:52:43.376435626+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376439622+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376443233+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T13:52:43.37644692+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"5 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376450603+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376454747+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Output":"--- PASS: TestGetOneByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T13:52:43.376458803+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestGetOneByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376462175+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog"}
+{"Time":"2018-10-24T13:52:43.376465506+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"=== RUN   TestUpdateByJobIDServiceLog\n"}
+{"Time":"2018-10-24T13:52:43.37647159+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T13:52:43.376496191+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.0ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T13:52:43.376500196+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376522444+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"  TestUpdateByJobIDServiceLog \n"}
+{"Time":"2018-10-24T13:52:43.376526563+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376530581+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376535082+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T13:52:43.37653912+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"6 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376542998+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376560614+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Output":"--- PASS: TestUpdateByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T13:52:43.376564994+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestUpdateByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376581797+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog"}
+{"Time":"2018-10-24T13:52:43.376585743+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"=== RUN   TestUpdateReturnByJobIDServiceLog\n"}
+{"Time":"2018-10-24T13:52:43.376589963+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T13:52:43.376594031+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.1ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T13:52:43.376597767+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376601475+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"  TestUpdateReturnByJobIDServiceLog \n"}
+{"Time":"2018-10-24T13:52:43.3766051+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376609024+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376612628+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T13:52:43.37661644+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"8 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.37662209+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376626357+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Output":"--- PASS: TestUpdateReturnByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T13:52:43.376630505+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestUpdateReturnByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376634192+07:00","Action":"run","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog"}
+{"Time":"2018-10-24T13:52:43.3766384+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"=== RUN   TestDeleteByJobIDServiceLog\n"}
+{"Time":"2018-10-24T13:52:43.376642269+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /  db.BeginTx /     0.0ms] - [START TRANSACTION]\n"}
+{"Time":"2018-10-24T13:52:43.376646148+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"[ORM]2018/10/24 12:30:55  -[Queries/default] - [  OK /   tx.Commit /     0.1ms] - [COMMIT]\n"}
+{"Time":"2018-10-24T13:52:43.376649937+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376654025+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"  TestDeleteByJobIDServiceLog \n"}
+{"Time":"2018-10-24T13:52:43.376657928+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"    Should Success \u001b[32m✔\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376661675+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376665276+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\u001b[31m\u001b[0m\u001b[33m\u001b[0m\u001b[32m\n"}
+{"Time":"2018-10-24T13:52:43.376668995+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"9 total assertions\u001b[0m\n"}
+{"Time":"2018-10-24T13:52:43.376672644+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"\n"}
+{"Time":"2018-10-24T13:52:43.376676768+07:00","Action":"output","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Output":"--- PASS: TestDeleteByJobIDServiceLog (0.00s)\n"}
+{"Time":"2018-10-24T13:52:43.376680475+07:00","Action":"pass","Package":"template/models/logic/svclog","Test":"TestDeleteByJobIDServiceLog","Elapsed":0}
+{"Time":"2018-10-24T13:52:43.376684334+07:00","Action":"output","Package":"template/models/logic/svclog","Output":"PASS\n"}
+{"Time":"2018-10-24T13:52:43.376688197+07:00","Action":"output","Package":"template/models/logic/svclog","Output":"coverage: 54.7% of statements\n"}
+{"Time":"2018-10-24T13:52:43.376691845+07:00","Action":"output","Package":"template/models/logic/svclog","Output":"ok  \ttemplate/models/logic/svclog\t(cached)\tcoverage: 54.7% of statements\n"}
+{"Time":"2018-10-24T13:52:43.376697285+07:00","Action":"pass","Package":"template/models/logic/svclog","Elapsed":0}

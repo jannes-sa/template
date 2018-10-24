@@ -41,7 +41,7 @@ func (d *SvcLog) Index() (err error) {
 	}
 
 	index := mgo.Index{
-		Key:        []string{"job_id"},
+		Key:        []string{jobIDStr},
 		Unique:     true,  // Prevent two documents from having the same index key
 		DropDups:   false, // Drop documents with the same index key as a previously indexed one
 		Background: false, // Build index in background and return immediately
@@ -74,7 +74,7 @@ func (d *SvcLog) GetOneServiceLog() (row dbStruct.ServiceLog, err error) {
 		return
 	}
 
-	err = coll.Find(bson.M{"job_id": row.JobID}).One(&row)
+	err = coll.Find(bson.M{jobIDStr: row.JobID}).One(&row)
 
 	return
 }
@@ -87,7 +87,7 @@ func (d *SvcLog) UpdateServiceLog() (err error) {
 		return
 	}
 
-	selector := bson.M{"job_id": "xxxxxx"}
+	selector := bson.M{jobIDStr: "xxxxxx"}
 	update := bson.M{
 		"$set": bson.M{
 			"res": "yyyy",
@@ -119,7 +119,7 @@ func (d *SvcLog) RemoveServiceLog() (err error) {
 	if err != nil {
 		return
 	}
-	selector := bson.M{"job_id": "xxxxxx"}
+	selector := bson.M{jobIDStr: "xxxxxx"}
 	err = coll.Remove(selector)
 
 	return

@@ -7,9 +7,13 @@ import (
 	stSvcLog "template/models/stub/svclog"
 )
 
-var (
+const (
 	logicName = "@svcLog"
-	DBSvcLog  iSvcLog.ISvcLog
+)
+
+var (
+	// DBSvcLog ...
+	DBSvcLog iSvcLog.ISvcLog
 )
 
 func init() {
