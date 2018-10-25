@@ -1,18 +1,17 @@
 package db
 
-import (
-	"github.com/astaxie/beego/orm"
-)
+import "template/helper/constant/tablename"
 
 // ServiceLog - ServiceLogStruct
 type ServiceLog struct {
-	Type    string `orm:"column(type)" bson:"type"`
-	Req     string `orm:"column(req)" bson:"req"`
-	Res     string `orm:"column(res)" bson:"res"`
-	Errcode string `orm:"column(errcode)" bson:"errcode"`
-	JobID   string `orm:"column(job_id);pk" bson:"job_id"`
+	JobID   string `gorm:"primary_key;column:job_id;not null`
+	Type    string `gorm:"column:type;not null`
+	Req     string `gorm:"column:req;not null`
+	Res     string `gorm:"column:res;not null`
+	Errcode string `gorm:"column:errcode;not null`
 }
 
-func init() {
-	orm.RegisterModel(new(ServiceLog))
+// TableName - TableName
+func (ServiceLog) TableName() string {
+	return tablename.ServiceLog
 }

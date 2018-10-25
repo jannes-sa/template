@@ -15,10 +15,11 @@ type SvcLog struct{}
 
 var tblServiceLog = tablename.ServiceLog
 
-// GetAllServiceLog - GetAllServiceLog GetAll
+// GetAllServiceLog - GetAllServiceLog  GetAll
 func (d *SvcLog) GetAllServiceLog() (rows []dbStruct.ServiceLog, err error) {
 	o := orm.NewOrm()
 	_, err = o.QueryTable(tblServiceLog).All(&rows)
+
 	return
 }
 

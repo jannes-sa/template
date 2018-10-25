@@ -223,8 +223,10 @@
 			"revisionTime": "2017-11-14T11:24:18Z"
 		},
 		{
+			"checksumSHA1": "AZXlD31gGXsYif22lxvTqi49lzY=",
 			"path": "github.com/jinzhu/gorm",
-			"revision": ""
+			"revision": "742154be9a26e849f02d296073c077e0a7c23828",
+			"revisionTime": "2018-10-07T00:49:37Z"
 		},
 		{
 			"checksumSHA1": "6tugndU74PfNoCMa1PUG9pqn8Ds=",

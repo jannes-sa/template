@@ -1,8 +1,7 @@
 package svclog
 
 import (
-	"template/helper"
-	dbBase "template/models/db/pgsql"
+	dbBase "template/models/db/pgsql2"
 	"template/structs"
 	dbStruct "template/structs/db"
 	lStruct "template/structs/logic"
@@ -49,30 +48,17 @@ func InsertServiceLog(
 	row.Errcode = "ERRCODE"
 	row.Type = "http"
 
-	db := dbBase.Session()
-	err := db.Begin()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		return
-	}
+	tx := dbBase.DB.Begin()
 
-	_, err = DBSvcLog.InsertServiceLog(db, &row)
+	_, err := DBSvcLog.InsertServiceLog(tx, &row)
 	if err != nil {
 		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
+		tx.Rollback()
 
 		return
 	}
 
-	err = db.Commit()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
-
-		return
-	}
+	tx.Commit()
 }
 
 // UpdateByJobIDServiceLog - UpdateByJobIDServiceLog
@@ -87,30 +73,17 @@ func UpdateByJobIDServiceLog(
 	row.JobID = contextStruct.JobID
 	row.Req = "REQ UPDATE DATA"
 
-	db := dbBase.Session()
-	err := db.Begin()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		return
-	}
+	tx := dbBase.DB.Begin()
 
-	err = DBSvcLog.UpdateByJobIDServiceLog(db, row)
+	err := DBSvcLog.UpdateByJobIDServiceLog(tx, row)
 	if err != nil {
 		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
+		tx.Rollback()
 
 		return
 	}
 
-	err = db.Commit()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
-
-		return
-	}
+	tx.Commit()
 }
 
 // UpdateReturnByJobIDServiceLog - UpdateReturnByJobIDServiceLog
@@ -125,30 +98,17 @@ func UpdateReturnByJobIDServiceLog(
 	row.JobID = contextStruct.JobID
 	row.Req = "REQ UPDATE DATA RETURN"
 
-	db := dbBase.Session()
-	err := db.Begin()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		return
-	}
+	tx := dbBase.DB.Begin()
 
-	rows, err = DBSvcLog.UpdateReturnByJobIDServiceLog(db, row)
+	rows, err := DBSvcLog.UpdateReturnByJobIDServiceLog(tx, row)
 	if err != nil {
 		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
+		tx.Rollback()
 
 		return
 	}
 
-	err = db.Commit()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
-
-		return
-	}
+	tx.Commit()
 
 	return
 }
@@ -164,28 +124,15 @@ func DeleteByJobIDServiceLog(
 	)
 	row.JobID = contextStruct.JobID
 
-	db := dbBase.Session()
-	err := db.Begin()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		return
-	}
+	tx := dbBase.DB.Begin()
 
-	err = DBSvcLog.DeleteByJobIDServiceLog(db, row)
+	err := DBSvcLog.DeleteByJobIDServiceLog(tx, row)
 	if err != nil {
 		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
+		tx.Rollback()
 
 		return
 	}
 
-	err = db.Commit()
-	if err != nil {
-		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), nmFunc, logicName)
-		err = db.Rollback()
-		helper.CheckErr(nmFunc+" "+logicName, err)
-
-		return
-	}
+	tx.Commit()
 }
