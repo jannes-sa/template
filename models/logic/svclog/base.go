@@ -3,7 +3,7 @@ package svclog
 import (
 	"template/helper/constant"
 	iSvcLog "template/models/db/interfaces/svclog"
-	pgSvcLog "template/models/db/pgsql/svclog"
+	pgSvcLog "template/models/db/pgsql2/svclog"
 	stSvcLog "template/models/stub/svclog"
 )
 

@@ -8,6 +8,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/astaxie/beego"
 )
 
 // DB contains information for current db connection
@@ -776,6 +778,7 @@ func (s *DB) clone() *DB {
 }
 
 func (s *DB) print(v ...interface{}) {
+	beego.Info(v)
 	s.logger.Print(v...)
 }
 

@@ -13,6 +13,7 @@ import (
 // Session Set Session for DB
 func Session() orm.Ormer {
 	db := orm.NewOrm()
+
 	return db
 }
 

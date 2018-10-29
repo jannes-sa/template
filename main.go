@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"template/helper/constant"
 	"template/helper/timetn"
-	db "template/models/db/pgsql"
+	pg "template/models/db/pgsql2"
 	"template/routers/grpc"
 	_ "template/routers/http"
 	_ "template/structs/db"
@@ -75,7 +75,8 @@ func setup() {
 		panic(err)
 	}
 
-	db.RegisterPGSQL()
+	// db.RegisterPGSQL()
+	pg.ConnectDB()
 }
 
 func initialData() {
