@@ -8,6 +8,8 @@ import (
 	"math"
 	"math/big"
 	"math/rand"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"regexp"
 	"strconv"
@@ -19,11 +21,10 @@ import (
 	logicStruct "template/structs/logic"
 	"time"
 
-	js "github.com/json-iterator/go"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/cache"
 	"github.com/astaxie/beego/context"
+	js "github.com/json-iterator/go"
 )
 
 var secureDigits = 6
@@ -375,4 +376,14 @@ func PathLogFile(pathfile string) string {
 	pathLog := pathfile + "/" + hostname + "_" + strTime + "_" +
 		constant.GOAPP + ".log"
 	return pathLog
+}
+
+// ScaffoldContext : Get Context
+func ScaffoldContext() *context.Context {
+	newRequest, _ := http.NewRequest("", "", nil)
+
+	w := httptest.NewRecorder()
+	ctxBee := beego.BeeApp.Handlers.ServeHTTPCtx(w, newRequest)
+
+	return ctxBee
 }
