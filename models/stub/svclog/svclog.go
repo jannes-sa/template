@@ -4,6 +4,8 @@ import (
 	"template/helper/constant/tablename"
 	dbStruct "template/structs/db"
 
+	"github.com/jinzhu/gorm/dialects/postgres"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -16,8 +18,8 @@ var tblServiceLog = tablename.ServiceLog
 func (d *SvcLog) GetAllServiceLog() (rows []dbStruct.ServiceLog, err error) {
 	row := dbStruct.ServiceLog{
 		JobID:   "job1",
-		Req:     "req",
-		Res:     "res",
+		Req:     postgres.Jsonb{[]byte("{}")},
+		Res:     postgres.Jsonb{[]byte("{}")},
 		Errcode: "errcode",
 		Type:    "http",
 	}
@@ -29,8 +31,8 @@ func (d *SvcLog) GetAllServiceLog() (rows []dbStruct.ServiceLog, err error) {
 func (d *SvcLog) GetOneByJobIDServiceLog(r dbStruct.ServiceLog) (row dbStruct.ServiceLog, err error) {
 	row = dbStruct.ServiceLog{
 		JobID:   "job1",
-		Req:     "req",
-		Res:     "res",
+		Req:     postgres.Jsonb{[]byte("{}")},
+		Res:     postgres.Jsonb{[]byte("{}")},
 		Errcode: "errcode",
 		Type:    "http",
 	}
@@ -59,8 +61,8 @@ func (d *SvcLog) UpdateReturnByJobIDServiceLog(
 ) (rows []dbStruct.ServiceLog, err error) {
 	row = dbStruct.ServiceLog{
 		JobID:   "job1",
-		Req:     "req",
-		Res:     "res",
+		Req:     postgres.Jsonb{[]byte("{}")},
+		Res:     postgres.Jsonb{[]byte("{}")},
 		Errcode: "errcode",
 		Type:    "http",
 	}

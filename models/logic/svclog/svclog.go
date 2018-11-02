@@ -5,6 +5,8 @@ import (
 	"template/structs"
 	dbStruct "template/structs/db"
 	lStruct "template/structs/logic"
+
+	"github.com/jinzhu/gorm/dialects/postgres"
 )
 
 // GetAllServiceLog - GetAllServiceLog
@@ -43,8 +45,8 @@ func InsertServiceLog(
 	)
 
 	row.JobID = contextStruct.JobID
-	row.Req = "req"
-	row.Res = "res"
+	row.Req = postgres.Jsonb{[]byte(`{"update":"1"}`)}
+	row.Res = postgres.Jsonb{[]byte("{}")}
 	row.Errcode = "ERRCODE"
 	row.Type = "http"
 
@@ -71,7 +73,7 @@ func UpdateByJobIDServiceLog(
 		row    dbStruct.ServiceLog
 	)
 	row.JobID = contextStruct.JobID
-	row.Req = "REQ UPDATE DATA"
+	row.Req = postgres.Jsonb{[]byte("{}")}
 
 	tx := dbBase.DB.Begin()
 
@@ -96,7 +98,7 @@ func UpdateReturnByJobIDServiceLog(
 		row    dbStruct.ServiceLog
 	)
 	row.JobID = contextStruct.JobID
-	row.Req = "REQ UPDATE DATA RETURN"
+	row.Req = postgres.Jsonb{[]byte(`{"update":"1"}`)}
 
 	tx := dbBase.DB.Begin()
 

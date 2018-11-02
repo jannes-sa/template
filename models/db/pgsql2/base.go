@@ -5,6 +5,8 @@ import (
 	"template/helper/constant"
 	"time"
 
+	// structsDB "template/structs/db"
+
 	"github.com/astaxie/beego"
 	"github.com/jinzhu/gorm"
 
@@ -28,6 +30,8 @@ func ConnectDB() {
 	db.DB().SetConnMaxLifetime(10 * time.Minute)
 
 	beego.Info("DB Connected", db.DB().Ping())
+
+	// db.AutoMigrate(&structsDB.ServiceLog{})
 
 	DB = db
 

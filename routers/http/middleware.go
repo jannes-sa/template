@@ -21,6 +21,10 @@ type Middleware struct{}
 
 func (m *Middleware) log(c *context.Context) {
 	jobID := helper.GetJobID(c)
+	rqBody := strings.Replace(
+		string(c.Input.RequestBody),
+		"\n", "", -1)
+	rqBody = strings.Replace(rqBody, " ", "", -1)
 	go func() {
 		beego.Info(
 			"REQ_JOBID", jobID,
@@ -28,9 +32,7 @@ func (m *Middleware) log(c *context.Context) {
 			"REQ_HEADER", jobID, helper.HeaderAll(c),
 			"REQ_BODY",
 			jobID,
-			strings.Replace(
-				string(c.Input.RequestBody),
-				"\n", "", -1),
+			rqBody,
 		)
 	}()
 }
