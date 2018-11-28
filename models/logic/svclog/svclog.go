@@ -2,6 +2,8 @@ package svclog
 
 import (
 	dbBase "template/models/db/pgsql2"
+	"template/models/logic/logic2/dellogic2"
+	"template/models/logic/svclog/delsvclog"
 	"template/structs"
 	dbStruct "template/structs/db"
 	lStruct "template/structs/logic"
@@ -9,8 +11,30 @@ import (
 	"github.com/jinzhu/gorm/dialects/postgres"
 )
 
+func init() {
+	delsvclog.Register("logicSvcLog", &logicSvcLog{})
+}
+
+type logicSvcLog struct{}
+
+func (l logicSvcLog) Call() int {
+	if _, ok := dellogic2.Function[dellogic2.LogicName]; !ok {
+		panic("function not exists")
+	}
+	logicLogic2 := dellogic2.Function[dellogic2.LogicName]
+
+	calc := logicLogic2.Receive(2)
+	return calc
+}
+
+func (l logicSvcLog) Receive(input int) int {
+	return input * 2
+}
+
+// delegate public function testing //
+
 // GetAllServiceLog - GetAllServiceLog
-func GetAllServiceLog(errCode *[]structs.TypeError) (rows []dbStruct.ServiceLog) {
+func (l logicSvcLog) getAllServiceLog(errCode *[]structs.TypeError) (rows []dbStruct.ServiceLog) {
 	rows, err := DBSvcLog.GetAllServiceLog()
 	if err != nil {
 		structs.ErrorCode.DatabaseError.String(errCode, err.Error(), "GetAllServiceLog ", logicName)
@@ -20,7 +44,7 @@ func GetAllServiceLog(errCode *[]structs.TypeError) (rows []dbStruct.ServiceLog)
 }
 
 // GetOneByJobIDServiceLog - GetOneByJobIDServiceLog
-func GetOneByJobIDServiceLog(
+func (l logicSvcLog) getOneByJobIDServiceLog(
 	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) (row dbStruct.ServiceLog) {
@@ -35,7 +59,7 @@ func GetOneByJobIDServiceLog(
 }
 
 // InsertServiceLog - InsertServiceLog
-func InsertServiceLog(
+func (l logicSvcLog) insertServiceLog(
 	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) {
@@ -64,7 +88,7 @@ func InsertServiceLog(
 }
 
 // UpdateByJobIDServiceLog - UpdateByJobIDServiceLog
-func UpdateByJobIDServiceLog(
+func (l logicSvcLog) updateByJobIDServiceLog(
 	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) {
@@ -89,7 +113,7 @@ func UpdateByJobIDServiceLog(
 }
 
 // UpdateReturnByJobIDServiceLog - UpdateReturnByJobIDServiceLog
-func UpdateReturnByJobIDServiceLog(
+func (l logicSvcLog) updateReturnByJobIDServiceLog(
 	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) (rows []dbStruct.ServiceLog) {
@@ -116,7 +140,7 @@ func UpdateReturnByJobIDServiceLog(
 }
 
 // DeleteByJobIDServiceLog - DeleteByJobIDServiceLog
-func DeleteByJobIDServiceLog(
+func (l logicSvcLog) deleteByJobIDServiceLog(
 	contextStruct lStruct.ContextStruct,
 	errCode *[]structs.TypeError,
 ) {
