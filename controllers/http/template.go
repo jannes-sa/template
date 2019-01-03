@@ -9,13 +9,13 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// TemplateController operations for Template
-type TemplateController struct {
+// TestController operations for Template
+type TestController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *TemplateController) URLMapping() {
+func (c *TestController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -30,7 +30,7 @@ func (c *TemplateController) URLMapping() {
 // @Success 201 {object} models.Template
 // @Failure 403 body is empty
 // @router / [post]
-func (c *TemplateController) Post() {
+func (c *TestController) Post() {
 	errCode := make([]structs.TypeError, 0)
 
 	var (
@@ -73,7 +73,7 @@ func (c *TemplateController) Post() {
 // @Success 200 {object} models.Template
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *TemplateController) GetOne() {
+func (c *TestController) GetOne() {
 	errCode := make([]structs.TypeError, 0)
 
 	id := c.Ctx.Input.Param(":id")
@@ -95,7 +95,7 @@ func (c *TemplateController) GetOne() {
 // @Success 200 {object} models.Template
 // @Failure 403
 // @router / [get]
-func (c *TemplateController) GetAll() {
+func (c *TestController) GetAll() {
 	return
 }
 
@@ -107,7 +107,7 @@ func (c *TemplateController) GetAll() {
 // @Success 200 {object} models.Template
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *TemplateController) Put() {
+func (c *TestController) Put() {
 	return
 }
 
@@ -118,6 +118,6 @@ func (c *TemplateController) Put() {
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *TemplateController) Delete() {
+func (c *TestController) Delete() {
 	return
 }

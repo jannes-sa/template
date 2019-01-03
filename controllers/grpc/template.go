@@ -9,7 +9,7 @@ import (
 )
 
 // RPCtrlTemplate - RPCtrlTemplate Controllers
-func RPCtrlTemplate(
+func RPCtrl(
 	in *pb.DoReq,
 	errRPCCode *structs.TypeGRPCError,
 	body *[]byte,

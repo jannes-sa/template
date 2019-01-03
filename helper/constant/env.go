@@ -2,10 +2,6 @@ package constant
 
 import (
 	"os"
-	"strings"
-
-	"github.com/astaxie/beego"
-	"github.com/joho/godotenv"
 )
 
 var (
@@ -27,8 +23,6 @@ var (
 )
 
 func init() {
-	LoadEnv()
-
 	GOPATH = os.Getenv("GOPATH")
 	GOAPP = os.Getenv("GOAPP")
 	GOENV = os.Getenv("GOENV")
@@ -45,16 +39,4 @@ func init() {
 	TZ = os.Getenv("TZ")
 
 	VERSION = os.Getenv("VERSION")
-}
-
-// LoadEnv - LoadEnv
-func LoadEnv() {
-	if os.Getenv("GOENV") == DEVCI || strings.ToLower(os.Getenv("GOENV")) == LOCAL {
-		errEnv := godotenv.Load(
-			os.Getenv("GOPATH") + "/src/" + os.Getenv("GOAPP") +
-				"/conf/env")
-		if errEnv != nil {
-			beego.Critical("fatal load env", errEnv)
-		}
-	}
 }

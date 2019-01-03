@@ -26,7 +26,7 @@ func init() {
 func Router() {
 	routeMap = map[string]fnRouteRPC{
 		/*:STARTGRPC*/
-		prefix + "/template": ctrl.RPCtrlTemplate,
+		prefix + "/template": ctrl.RPCtrl,
 		/*:ENDGRPC*/
 	}
 }

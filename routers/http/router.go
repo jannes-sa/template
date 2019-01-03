@@ -20,7 +20,7 @@ func Router() {
 
 		beego.NSNamespace("/template",
 			beego.NSInclude(
-				&ctrl.TemplateController{},
+				&ctrl.TestController{},
 			),
 		),
 		/*:ENDHTTP*/
