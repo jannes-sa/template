@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renewable Energy — 3D Animation (Three.js)</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #0b1d33;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    #app { position: fixed; inset: 0; }
+    .overlay {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      color: #fff;
+      z-index: 10;
+      pointer-events: none;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    .overlay h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .overlay h1 span { color: #ffc23c; }
+    .overlay p {
+      margin: 0;
+      font-size: 13px;
+      opacity: 0.85;
+      max-width: 340px;
+      line-height: 1.5;
+    }
+    .stats {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .stat {
+      background: rgba(8, 24, 44, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      padding: 10px 16px;
+      color: #fff;
+      min-width: 110px;
+    }
+    .stat .value {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffc23c;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+    .hint {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      z-index: 10;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Renewable <span>Energy</span> Park</h1>
+    <p>Solar farm with sun-tracking panels, wind turbines and live energy
+       flow powering the city — inspired by solar developers like SUN Energy.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="value" id="stat-solar">0.0 MW</div><div class="label">Solar Output</div></div>
+    <div class="stat"><div class="value" id="stat-wind">0.0 MW</div><div class="label">Wind Output</div></div>
+    <div class="stat"><div class="value" id="stat-co2">0 kg</div><div class="label">CO₂ Avoided</div></div>
+  </div>
+  <div class="hint">drag to orbit · scroll to zoom</div>
+  <div id="app"></div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    // ---------- Renderer / Scene / Camera ----------
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    document.getElementById('app').appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x9bc4e8, 90, 260);
+
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 600);
+    camera.position.set(38, 26, 48);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 4, 0);
+    controls.enableDamping = true;
+    controls.maxPolarAngle = Math.PI * 0.49;
+    controls.minDistance = 15;
+    controls.maxDistance = 160;
+
+    // ---------- Lights ----------
+    const ambient = new THREE.AmbientLight(0xbfdfff, 0.45);
+    scene.add(ambient);
+
+    const sunLight = new THREE.DirectionalLight(0xfff2cc, 2.2);
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.set(2048, 2048);
+    sunLight.shadow.camera.left = -70;
+    sunLight.shadow.camera.right = 70;
+    sunLight.shadow.camera.top = 70;
+    sunLight.shadow.camera.bottom = -70;
+    sunLight.shadow.camera.far = 400;
+    scene.add(sunLight);
+
+    const hemi = new THREE.HemisphereLight(0x87ceeb, 0x3a5f3a, 0.5);
+    scene.add(hemi);
+
+    // ---------- Sky + Sun ----------
+    const skyGeo = new THREE.SphereGeometry(400, 32, 16);
+    const skyMat = new THREE.ShaderMaterial({
+      side: THREE.BackSide,
+      uniforms: {
+        topColor: { value: new THREE.Color(0x3d7ec9) },
+        bottomColor: { value: new THREE.Color(0xcfe8ff) },
+        offset: { value: 60 },
+        exponent: { value: 0.7 }
+      },
+      vertexShader: `
+        varying vec3 vWorldPosition;
+        void main() {
+          vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+          vWorldPosition = worldPosition.xyz;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }`,
+      fragmentShader: `
+        uniform vec3 topColor;
+        uniform vec3 bottomColor;
+        uniform float offset;
+        uniform float exponent;
+        varying vec3 vWorldPosition;
+        void main() {
+          float h = normalize(vWorldPosition + vec3(0.0, offset, 0.0)).y;
+          gl_FragColor = vec4(mix(bottomColor, topColor, max(pow(max(h, 0.0), exponent), 0.0)), 1.0);
+        }`
+    });
+    scene.add(new THREE.Mesh(skyGeo, skyMat));
+
+    const sunMesh = new THREE.Mesh(
+      new THREE.SphereGeometry(6, 24, 24),
+      new THREE.MeshBasicMaterial({ color: 0xffdd55 })
+    );
+    scene.add(sunMesh);
+
+    const sunGlow = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: makeGlowTexture(),
+      color: 0xffcc44,
+      transparent: true,
+      opacity: 0.9,
+      depthWrite: false
+    }));
+    sunGlow.scale.set(50, 50, 1);
+    scene.add(sunGlow);
+
+    function makeGlowTexture() {
+      const c = document.createElement('canvas');
+      c.width = c.height = 128;
+      const ctx = c.getContext('2d');
+      const g = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
+      g.addColorStop(0, 'rgba(255, 230, 150, 1)');
+      g.addColorStop(0.35, 'rgba(255, 200, 80, 0.45)');
+      g.addColorStop(1, 'rgba(255, 200, 80, 0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 128, 128);
+      return new THREE.CanvasTexture(c);
+    }
+
+    // ---------- Ground (low-poly rolling hills) ----------
+    const groundGeo = new THREE.PlaneGeometry(400, 400, 80, 80);
+    groundGeo.rotateX(-Math.PI / 2);
+    {
+      const pos = groundGeo.attributes.position;
+      for (let i = 0; i < pos.count; i++) {
+        const x = pos.getX(i), z = pos.getZ(i);
+        const d = Math.sqrt(x * x + z * z);
+        // keep the center flat for the installations, roll hills further out
+        const hill = Math.max(0, (d - 55) / 45);
+        const y = hill * (Math.sin(x * 0.07) * Math.cos(z * 0.06) * 3.5 + Math.sin(d * 0.05) * 2);
+        pos.setY(i, y);
+      }
+      groundGeo.computeVertexNormals();
+    }
+    const ground = new THREE.Mesh(
+      groundGeo,
+      new THREE.MeshStandardMaterial({ color: 0x5d8a4f, roughness: 1, flatShading: true })
+    );
+    ground.receiveShadow = true;
+    scene.add(ground);
+
+    // ---------- Solar farm (sun-tracking panels) ----------
+    const panelPivots = [];
+    const solarFarm = new THREE.Group();
+    {
+      const legGeo = new THREE.CylinderGeometry(0.12, 0.12, 1.6, 8);
+      const legMat = new THREE.MeshStandardMaterial({ color: 0x9aa3ad, roughness: 0.5, metalness: 0.6 });
+      const panelGeo = new THREE.BoxGeometry(4.4, 0.12, 2.6);
+      const panelMat = new THREE.MeshStandardMaterial({
+        color: 0x0a2a6b, roughness: 0.15, metalness: 0.7,
+        emissive: 0x06245f, emissiveIntensity: 0.35
+      });
+      const frameMat = new THREE.MeshStandardMaterial({ color: 0xd8dde2, roughness: 0.4, metalness: 0.5 });
+
+      const rows = 4, cols = 6;
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const unit = new THREE.Group();
+          const leg = new THREE.Mesh(legGeo, legMat);
+          leg.position.y = 0.8;
+          leg.castShadow = true;
+          unit.add(leg);
+
+          const pivot = new THREE.Group();
+          pivot.position.y = 1.6;
+
+          const panel = new THREE.Mesh(panelGeo, panelMat);
+          panel.castShadow = true;
+          panel.receiveShadow = true;
+          pivot.add(panel);
+
+          // thin frame border to read as a PV module
+          const frame = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.06, 2.8), frameMat);
+          frame.position.y = -0.05;
+          pivot.add(frame);
+
+          // cell grid lines via small emissive strips
+          for (let i = -1.6; i <= 1.6; i += 0.8) {
+            const strip = new THREE.Mesh(
+              new THREE.BoxGeometry(0.04, 0.13, 2.6),
+              new THREE.MeshBasicMaterial({ color: 0x3f6fd1 })
+            );
+            strip.position.set(i, 0.01, 0);
+            pivot.add(strip);
+          }
+
+          unit.add(pivot);
+          unit.position.set(-34 + c * 5.6, 0, 6 + r * 4.6);
+          panelPivots.push(pivot);
+          solarFarm.add(unit);
+        }
+      }
+    }
+    scene.add(solarFarm);
+
+    // ---------- Wind turbines ----------
+    const turbines = [];
+    function makeTurbine(x, z, scale = 1) {
+      const g = new THREE.Group();
+      const white = new THREE.MeshStandardMaterial({ color: 0xf4f6f8, roughness: 0.4 });
+
+      const tower = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.55, 16, 12), white);
+      tower.position.y = 8;
+      tower.castShadow = true;
+      g.add(tower);
+
+      const nacelle = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.9, 0.9), white);
+      nacelle.position.set(0.2, 16.2, 0);
+      nacelle.castShadow = true;
+      g.add(nacelle);
+
+      const hub = new THREE.Group();
+      hub.position.set(1.1, 16.2, 0);
+      const nose = new THREE.Mesh(new THREE.SphereGeometry(0.42, 12, 12), white);
+      nose.castShadow = true;
+      hub.add(nose);
+
+      const bladeGeo = new THREE.BoxGeometry(0.16, 7.5, 0.55);
+      bladeGeo.translate(0, 3.95, 0);
+      for (let i = 0; i < 3; i++) {
+        const blade = new THREE.Mesh(bladeGeo, white);
+        blade.rotation.x = (i * Math.PI * 2) / 3;
+        blade.castShadow = true;
+        hub.add(blade);
+      }
+
+      g.add(hub);
+      g.position.set(x, 0, z);
+      g.scale.setScalar(scale);
+      g.rotation.y = -Math.PI / 2.3;
+      turbines.push({ group: g, hub, speed: 0.8 + Math.random() * 0.7 });
+      scene.add(g);
+    }
+    makeTurbine(-38, -22, 1.0);
+    makeTurbine(-24, -30, 1.15);
+    makeTurbine(-10, -24, 0.9);
+    makeTurbine(4, -32, 1.05);
+
+    // ---------- City (energy consumer) ----------
+    const city = new THREE.Group();
+    const windowMats = [];
+    {
+      const palette = [0x8fa6b8, 0x7c93a6, 0xa3b5c4, 0x6e8496];
+      for (let i = 0; i < 16; i++) {
+        const w = 2 + Math.random() * 2.5;
+        const h = 4 + Math.random() * 11;
+        const d = 2 + Math.random() * 2.5;
+        const bMat = new THREE.MeshStandardMaterial({
+          color: palette[i % palette.length], roughness: 0.8
+        });
+        const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), bMat);
+        b.position.set(26 + (i % 4) * 5 + Math.random() * 1.5, h / 2, -14 + Math.floor(i / 4) * 5 + Math.random() * 1.5);
+        b.castShadow = true;
+        b.receiveShadow = true;
+        city.add(b);
+
+        // emissive window block that "lights up" as energy arrives
+        const wm = new THREE.MeshStandardMaterial({
+          color: 0x223344, emissive: 0xffd966, emissiveIntensity: 0
+        });
+        const wb = new THREE.Mesh(new THREE.BoxGeometry(w * 0.7, h * 0.75, d * 1.02), wm);
+        wb.position.copy(b.position);
+        windowMats.push(wm);
+        city.add(wb);
+      }
+    }
+    scene.add(city);
+
+    // ---------- Battery / substation ----------
+    const battery = new THREE.Group();
+    {
+      const shell = new THREE.Mesh(
+        new THREE.CylinderGeometry(2.2, 2.2, 5, 24),
+        new THREE.MeshStandardMaterial({ color: 0x2e3d4f, roughness: 0.4, metalness: 0.4 })
+      );
+      shell.position.y = 2.5;
+      shell.castShadow = true;
+      battery.add(shell);
+      const cap = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.7, 0.7, 0.8, 16),
+        new THREE.MeshStandardMaterial({ color: 0xffc23c, emissive: 0xffaa00, emissiveIntensity: 0.6 })
+      );
+      cap.position.y = 5.4;
+      battery.add(cap);
+      battery.position.set(8, 0, 2);
+    }
+    scene.add(battery);
+
+    // ---------- Energy flow particles along curves ----------
+    const flows = [];
+    function makeFlow(from, to, color, count = 26) {
+      const mid = from.clone().lerp(to, 0.5);
+      mid.y += 7 + Math.random() * 4;
+      const curve = new THREE.QuadraticBezierCurve3(from, mid, to);
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(count * 3), 3));
+      const mat = new THREE.PointsMaterial({
+        color, size: 0.55, transparent: true, opacity: 0.95,
+        map: makeGlowTexture(), depthWrite: false, blending: THREE.AdditiveBlending
+      });
+      const points = new THREE.Points(geo, mat);
+      scene.add(points);
+
+      // faint guide line
+      const line = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(curve.getPoints(40)),
+        new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.12 })
+      );
+      scene.add(line);
+
+      const offsets = Array.from({ length: count }, () => Math.random());
+      flows.push({ curve, geo, offsets, speed: 0.1 + Math.random() * 0.06 });
+    }
+
+    const batteryTop = new THREE.Vector3(8, 5.5, 2);
+    const cityHub = new THREE.Vector3(33, 6, -8);
+    makeFlow(new THREE.Vector3(-20, 2.5, 12), batteryTop, 0xffc23c);   // solar -> battery
+    makeFlow(new THREE.Vector3(-30, 2.5, 9), batteryTop, 0xffc23c);    // solar -> battery
+    makeFlow(new THREE.Vector3(-24, 17, -30), batteryTop, 0x66d9ff);   // wind -> battery
+    makeFlow(new THREE.Vector3(4, 16, -32), batteryTop, 0x66d9ff);     // wind -> battery
+    makeFlow(batteryTop, cityHub, 0x9dff8a, 34);                       // battery -> city
+
+    // ---------- Day cycle + animation ----------
+    const clock = new THREE.Clock();
+    const statSolar = document.getElementById('stat-solar');
+    const statWind = document.getElementById('stat-wind');
+    const statCo2 = document.getElementById('stat-co2');
+    let co2 = 0;
+
+    const dayTop = new THREE.Color(0x3d7ec9), dayBottom = new THREE.Color(0xcfe8ff);
+    const duskTop = new THREE.Color(0x1a2a55), duskBottom = new THREE.Color(0xff9e6b);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      const dt = clock.getDelta() || 0.016;
+
+      // sun travels a slow arc; daylight factor 0..1
+      const cycle = t * 0.07;
+      const sunAngle = Math.PI * (0.15 + 0.7 * (0.5 + 0.5 * Math.sin(cycle)));
+      const sunPos = new THREE.Vector3(
+        Math.cos(sunAngle) * 160,
+        Math.sin(sunAngle) * 110 + 8,
+        -90
+      );
+      sunMesh.position.copy(sunPos);
+      sunGlow.position.copy(sunPos);
+      sunLight.position.copy(sunPos);
+      const daylight = THREE.MathUtils.clamp(sunPos.y / 110, 0.12, 1);
+
+      sunLight.intensity = 0.4 + 2.0 * daylight;
+      ambient.intensity = 0.2 + 0.35 * daylight;
+      skyMat.uniforms.topColor.value.lerpColors(duskTop, dayTop, daylight);
+      skyMat.uniforms.bottomColor.value.lerpColors(duskBottom, dayBottom, daylight);
+      scene.fog.color.copy(skyMat.uniforms.bottomColor.value);
+
+      // panels tilt to track the sun (rotate around their long axis)
+      const targetTilt = THREE.MathUtils.clamp(Math.atan2(sunPos.x, sunPos.y), -0.9, 0.9);
+      for (const p of panelPivots) {
+        p.rotation.z += (targetTilt - p.rotation.z) * 0.02;
+      }
+
+      // turbines spin
+      for (const tb of turbines) tb.hub.rotation.x += dt * tb.speed * 2.2;
+
+      // particles travel along curves; solar flows dim at night
+      flows.forEach((f, idx) => {
+        const pos = f.geo.attributes.position;
+        const isSolar = idx < 2;
+        const vis = isSolar ? daylight : 1;
+        for (let i = 0; i < f.offsets.length; i++) {
+          f.offsets[i] = (f.offsets[i] + dt * f.speed * vis) % 1;
+          const v = f.curve.getPoint(f.offsets[i]);
+          pos.setXYZ(i, v.x, v.y, v.z);
+        }
+        pos.needsUpdate = true;
+      });
+
+      // city windows glow more at night (when stored energy is used)
+      const nightGlow = 0.15 + (1 - daylight) * 1.1;
+      windowMats.forEach((m, i) => {
+        m.emissiveIntensity = nightGlow * (0.6 + 0.4 * Math.sin(t * 1.5 + i));
+      });
+
+      // live stats
+      const solarMW = 18.6 * daylight;
+      const windMW = 6 + 2.5 * Math.sin(t * 0.4);
+      co2 += (solarMW + windMW) * dt * 0.21; // ~0.21 kg CO2 avoided per kWh-ish, scaled for demo
+      statSolar.textContent = solarMW.toFixed(1) + ' MW';
+      statWind.textContent = windMW.toFixed(1) + ' MW';
+      statCo2.textContent = Math.floor(co2).toLocaleString() + ' kg';
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
